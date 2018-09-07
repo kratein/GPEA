@@ -1,3 +1,3 @@
 <?php
- $domain = "http://localhost/GPE/sources/web/";
+ $domain = "http://localhost/GPEA/sources/web/";
 ?>
