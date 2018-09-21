@@ -1,3 +1,8 @@
+<?php
+  require_once 'D:\wamp64\www\GPEA\sources\web\modele\api.php';
+
+  $tags = GetTagsObject();
+?>
 <header>
       <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -15,10 +20,11 @@
           Tag activités
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Activités</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <?php
+            foreach ($tags as $tag) {
+              echo "<a class='dropdown-item' href='#'>".$tag->getLabel()."</a>";
+            }
+          ?>
         </div>
       </li>
     </ul>

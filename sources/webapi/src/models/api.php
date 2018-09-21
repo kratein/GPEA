@@ -32,8 +32,6 @@ require_once('entities/Entities.php');
 require_once('../class/Database.php');
 require_once('../class/DatabaseConfig.php');
 
-//header('Content-Type: application/json');
-
 
 if (!empty($_GET['name'])) {
     $name = $_GET['name'];
