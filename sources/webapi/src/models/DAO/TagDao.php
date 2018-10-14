@@ -44,6 +44,32 @@ class TagDAO
         return null;
     }
 
+    public static function getTagsByLabel($label) 
+    {
+        $tags = array();
+        $params = array(
+            'label' => $label
+        );
+        $query = 'SELECT * FROM tag WHERE label LIKE :label';
+        $result = Database::getInstance()->query($query, $params);
+        foreach ($result as $row) {
+            $tags[] = Tag::create($row);
+        }
+        return $tags;
+
+    }
+
+    public static function getTagByActivity($activity) {
+        $tags = array();
+        $params = array('activity' => $activity);
+        $query = 'SELECT t.id, t.label FROM has_tags H, tag T, hobbyactivity A WHERE t.id = h.id_tag AND h.id_HobbyActivity = a.id';
+        $result = Database::getInstance()->query($query, $params);
+        foreach ($result as $row) {
+            $tags[] = Tag::create($row);
+        }
+        return $tags;
+    }
+
     public static function getAll()
     {
         $tags = array();

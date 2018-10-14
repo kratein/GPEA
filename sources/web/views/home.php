@@ -145,8 +145,8 @@
 				<a href="#" data-toggle="collapse" class="btn btn-outline-secondary" data-target="#profilMadhi">Profil</a>			
 				<div id="profilMadhi" class="collapse">
 					<div class="card-body">
-						<h4 class="card-title">Madhi</h4>
-						<p class="card-text">Madhi est un developeur primordial pour l'équipe tant par sa capacite de jugement que sa joie de vivre.</p>
+						<h4 class="card-title">Mahdi</h4>
+						<p class="card-text">Mahdi est un developeur primordial pour l'équipe tant par sa capacite de jugement, de dissernement que sa joie de vivre.</p>
 					</div>
 				</div>
 			</div>
