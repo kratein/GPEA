@@ -41,6 +41,7 @@ class Hobby extends Entities implements JsonSerializable
      * @param Array like $stdClass -> return of PDO 
      * @return Object Hobby
      */
+    //remplir le tableau de tag 
     public static function create($stdClass)
     {
         if ($stdClass == null) {

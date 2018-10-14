@@ -32,8 +32,6 @@ require_once('entities/Entities.php');
 require_once('../class/Database.php');
 require_once('../class/DatabaseConfig.php');
 
-//header('Content-Type: application/json');
-
 
 if (!empty($_GET['name'])) {
     $name = $_GET['name'];
@@ -57,6 +55,13 @@ if (!empty($_GET['name'])) {
                 break;
             default:
                 response(400, 'Unknown name', null);
+        }
+    } else if (!empty($_GET['activity'])) {
+        $activity = $_GET['activity'];
+        if ($name == 'tag') {
+            response(200, 'Tag', getTagsActivity($activity));
+        } else {
+            response(400, 'Unknown name', null);
         }
     } else {
         switch ($name) {
@@ -85,97 +90,56 @@ if (!empty($_GET['name'])) {
 
 function getTags()
 {
-    $tags = TagDAO::getAll();
-    return $tags;
+    return TagDAO::getAll();
 }
 
 function getTag($id)
 {
-    $tag = TagDAO::get($id);
-    if ($tag == null) {
-        return array();
-    }
-    return $tag;
+    return TagDAO::get($id);;
 }
 
+function getTagsActivity($id) 
+{
+    return TagDAO::getTagByActivity($id);
+}
 function getRoles()
 {
-    $roles = RoleDao::getAll();
-    $result = array();
-    foreach ($roles as $role) {
-        $item = $role->toArray();
-        array_push($result, $item);
-    }
-    return $result;
+    return RoleDao::getAll();
 }
 
 function getRole($id)
 {
-    $role = RoleDAO::get($id);
-    if ($role == null) {
-        return array();
-    }
-    return $role->toArray();
+    return RoleDAO::get($id);
 }
 
 function getHobbies()
 {
-    $hobbies = HobbyDAO::getAll();
-    $result = array();
-    foreach ($hobbies as $hobby) {
-        $item = $hobby->toArray();
-        array_push($result, $item);
-    }
-    return $result;
+    return HobbyDAO::getAll();
 }
 
 function getHobby($id)
 {
-    $hobby = HobbyDAO::get($id);
-    if ($hobby == null) {
-        return array();
-    }
-    return $hobby->toArray();
+    return HobbyDAO::get($id);
 }
 
 function getPhotos()
 {
-    $photos = PhotoDAO::getAll();
-    $result = array();
-    foreach ($photos as $photo) {
-        $item = $photo->toArray();
-        array_push($result, $item);
-    }
-    return $result;
+    return PhotoDAO::getAll();
 }
 
 function getPhoto($id)
 {
-    $photo = PhotoDAO::get($id);
-    if ($photo == null) {
-        return array();
-    }
-    return $photo->toArray();
+    return PhotoDAO::get($id);
 }
 
 function getUsers()
 {
-    $users = UserDao::getAll();
-    $result = array();
-    foreach ($users as $user) {
-        $item = $user->toArray();
-        array_push($result, $item);
-    }
-    return $result;
+    return UserDao::getAll();
 }
 
 function getUser($id)
 {
-    $user = UserDAO::get($id);
-    if ($user == null) {
-        return array();
-    }
-    return $user->toArray();
+    return UserDAO::get($id);
 }
 
 function response($status, $status_message, $data)

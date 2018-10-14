@@ -16,7 +16,7 @@
 				<div class="carousel-caption center">
 					<h1 class="display-2">Bowling</h1>
 					<h3>Shoot it like the dude</h3>
-					<button type="button" class="btn btn-outline-light btn-lg">Réserver</button>
+					<a href="reservation/1/"><button type="button" class="btn btn-outline-light btn-lg">Réserver</button></a>
 					<button type="button" class="btn btn-primary btn-lg">Plus d'infos</button>
 				</div>
 			</div>
