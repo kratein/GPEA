@@ -77,7 +77,7 @@ class TagDAO
 
     }
 
-    public static function getTagByActivity($activity) {
+   /* public static function getTagByActivity($activity) {
         $tags = array();
         $params = array('activity' => $activity);
         $query = 'SELECT t.id, t.label FROM has_tags H, tag T, hobbyactivity A WHERE t.id = h.id_tag AND h.id_HobbyActivity = a.id';
@@ -86,7 +86,7 @@ class TagDAO
             $tags[] = Tag::create($row);
         }
         return $tags;
-    }
+    }*/
 
     public static function getAll()
     {

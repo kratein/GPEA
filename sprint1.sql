@@ -44,7 +44,7 @@ DROP TABLE IF EXISTS booking ;
 CREATE TABLE booking (id INT AUTO_INCREMENT NOT NULL,
 user_id int  NOT NULL,
 n_people int  NOT NULL,
-activity_id int  NOT NULL
+activity_id int  NOT NULL,
 PRIMARY KEY (id)) ENGINE=InnoDB;
 
 DROP TABLE IF EXISTS role ;
@@ -73,5 +73,5 @@ ALTER TABLE post ADD CONSTRAINT FK_post_id_Utilisateur FOREIGN KEY (id_user) REF
 ALTER TABLE post ADD CONSTRAINT FK_post_id_HobbyActivity FOREIGN KEY (id_hobbyactivity) REFERENCES hobbyactivity (id);
 ALTER TABLE has_tags ADD CONSTRAINT FK_has_tags_id_TAG FOREIGN KEY (id_tag) REFERENCES tag (id);
 ALTER TABLE has_tags ADD CONSTRAINT FK_has_tags_id_HobbyActivity FOREIGN KEY (id_hobbyactivity) REFERENCES hobbyactivity (id);
-ALTER TABLE booking ADD CONSTRAINT FK_user_id FOREIGN KEY (id_user) REFERENCES user(id)
-ALTER TABLE booking ADD CONSTRAINT FK_activity_id FOREIGN KEY(activity_id) REFERENCES hobbyactivity(id)
+ALTER TABLE booking ADD CONSTRAINT FK_user_id FOREIGN KEY (user_id) REFERENCES user(id);
+ALTER TABLE booking ADD CONSTRAINT FK_activity_id FOREIGN KEY(activity_id) REFERENCES hobbyactivity(id);

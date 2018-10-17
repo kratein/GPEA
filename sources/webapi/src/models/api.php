@@ -21,6 +21,7 @@ require_once('DAO/RoleDao.php');
 require_once('DAO/UserDao.php');
 require_once('DAO/PhotoDao.php');
 require_once('DAO/HobbyDao.php');
+require_once('DAO/BookingDao.php');
 
 require_once('entities/Hobby.php');
 require_once('entities/Photo.php');
@@ -28,6 +29,7 @@ require_once('entities/User.php');
 require_once('entities/Role.php');
 require_once('entities/Tag.php');
 require_once('entities/Entities.php');
+require_once('entities/Booking.php');
 
 require_once('../class/Database.php');
 require_once('../class/DatabaseConfig.php');
@@ -38,6 +40,9 @@ if (!empty($_GET['name'])) {
     if (!empty($_GET['id'])) {
         $id = $_GET['id'];
         switch ($name) {
+            case 'booking':
+                response(200, 'Booking', getBooking($id));
+                break;
             case 'tag':
                 response(200, 'Tag', getTag($id));
                 break;
@@ -65,6 +70,9 @@ if (!empty($_GET['name'])) {
         }
     } else {
         switch ($name) {
+            case 'booking':
+                response(200, 'Booking', getBookings());
+                break;
             case 'tag':
                 response(200, 'Tag', getTags());
                 break;
@@ -86,6 +94,16 @@ if (!empty($_GET['name'])) {
     }
 } else {
     response(400, 'Invalid request', null);
+}
+
+function getBookings()
+{
+    return BookingDAO::getAll();
+}
+
+function getBooking($id)
+{
+    return BookingDAO::get($id);;
 }
 
 function getTags()
