@@ -63,10 +63,15 @@ if (!empty($_GET['name'])) {
         }
     } else if (!empty($_GET['activity'])) {
         $activity = $_GET['activity'];
-        if ($name == 'tag') {
-            response(200, 'Tag', getTagsActivity($activity));
-        } else {
-            response(400, 'Unknown name', null);
+        switch ($name) {
+            case 'tag': 
+                response(200, 'Tag', getTagsActivity($activity));
+                break;
+            case 'photo':
+                response(200, 'Photo', getPhotosActivity($activity));
+                break;
+            default:
+                response(400, 'Unknown name', null);
         }
     } else {
         switch ($name) {
@@ -148,6 +153,11 @@ function getPhotos()
 function getPhoto($id)
 {
     return PhotoDAO::get($id);
+}
+
+function getPhotosActivity($id) 
+{
+    return PhotoDAO::getPhotoByActivity($id);
 }
 
 function getUsers()

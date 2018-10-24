@@ -45,7 +45,7 @@ class Photo extends Entities implements JsonSerializable
         $photo->setTitle($stdClass->title);
         $photo->setPath($stdClass->path);
         $photo->setDescription($stdClass->description);
-        $photo->setHobby(HobbyDao::get($stdClass->id_hobbyactivity));
+        $photo->setHobby($stdClass->id_hobbyactivity);
         return $photo;
     }
 
@@ -102,7 +102,7 @@ class Photo extends Entities implements JsonSerializable
             'title' => $this->_title,
             'path' => $this->_path,
             'desciption' => $this->_description,
-            'hobby' => $this->_hobby->toArray()
+            'hobby' => $this->_hobby
         );
         return $array;
     }

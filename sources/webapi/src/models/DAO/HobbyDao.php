@@ -57,11 +57,12 @@ class HobbyDAO
             'older' => $hobby->getOlder(),
             'street' => $hobby->getStreet(),
             'zipCode' => $hobby->getZipCode(),
-            'city' => $hobby->getCity()
+            'city' => $hobby->getCity(),
+            'cover' => $hobby->getCover()
         );
         $req = 'INSERT INTO hobbyactivity
-            (label, description, web_site, minimum_older, street, zip_code, city) 
-            VALUES (:label, :description, :webSite, :older, :street, :zipCode, :city);';
+            (label, description, web_site, minimum_older, street, zip_code, city, cover) 
+            VALUES (:label, :description, :webSite, :older, :street, :zipCode, :city :cover);';
         $query = Database::getInstance()->exec($req, $params);
         return $query;
     }
@@ -76,7 +77,8 @@ class HobbyDAO
             'older' => $hobby->getOlder(),
             'street' => $hobby->getStreet(),
             'zipCode' => $hobby->getZipCode(),
-            'city' => $hobby->getCity()
+            'city' => $hobby->getCity(),
+            'cover' => $hobby->getCover()
         );
         $query = Database::getInstance()->exec('UPDATE hobbyactivity 
              SET 
@@ -86,7 +88,8 @@ class HobbyDAO
                 minimum_older = :older,
                 street = :street,
                 zip_code = :zipCode,
-                city = :city WHERE id = :id', $params);
+                city = :city 
+                cover = :cover WHERE id = :id', $params);
         return $query;
     }
 

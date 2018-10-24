@@ -1,5 +1,5 @@
 <?php
-  require_once 'D:\wamp64\www\GPEA\sources\web\modele\api.php';
+  require_once '../modele/api.php';
 
   $tags = GetTagsObject();
 ?>
@@ -10,22 +10,10 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-  <a class="logo" href="#"><i class="fas fa-quidditch"></i></a>
+  <a class="logo" href=<?php echo $domain."accueil"?>><i class="fas fa-quidditch"></i></a>
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="#">Activités</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Tag activités
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <?php
-            foreach ($tags as $tag) {
-              echo "<a class='dropdown-item' href='#'>".$tag->getLabel()."</a>";
-            }
-          ?>
-        </div>
+        <a class="nav-link" href=<?php echo $domain."activites"?>>Activités</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">

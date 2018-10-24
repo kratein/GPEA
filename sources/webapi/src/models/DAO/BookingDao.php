@@ -32,7 +32,7 @@ class BookingDAO
     public static function add($booking)
     {
         $params = array(
-            'n_people' => $booking->getGrade(),
+            'n_people' => $booking->getN_People(),
             'user_id' => $booking->getUser_Id()->getId(),
             'activity_id' => $booking->getActivity_Id()->getId()
 
@@ -47,7 +47,7 @@ class BookingDAO
     {
         $params = array(
             'id' => $post->getId(),
-            'n_people' => $booking->getGrade(),
+            'n_people' => $booking->getN_People(),
             'user_id' => $booking->getUser_Id()->getId(),
             'activity_id' => $booking->getActivity_Id()->getId()
         );

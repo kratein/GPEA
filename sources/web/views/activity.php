@@ -3,13 +3,16 @@
   <body>
     <?php 
         require_once 'components/header.php'; 
-        require_once 'D:\wamp64\www\GPEA\sources\web\modele\api.php'; 
 
         if (!empty($_GET['id'])) 
         {
             $id = $_GET['id'];
             $hobby = GetHobbyObject($id);
             var_dump($hobby);
+        ?>
+
+
+        <?php
         }
     ?>
     <div>

@@ -25,6 +25,7 @@ class Hobby extends Entities implements JsonSerializable
     private $_zip_code;
     private $_city;
     private $_tags;
+    private $_cover;
 
     /**
      * Default constructor empty
@@ -56,7 +57,7 @@ class Hobby extends Entities implements JsonSerializable
         $hobby->setStreet($stdClass->street);
         $hobby->setZipCode($stdClass->zip_code);
         $hobby->setCity($stdClass->city);
-        $hobby->setTags(array());
+        $hobby->setCover($stdClass->cover);
         return $hobby;
     }
 
@@ -93,6 +94,11 @@ class Hobby extends Entities implements JsonSerializable
     public function getCity()
     {
         return $this->_city;
+    }
+
+    public function getCover()
+    {
+        return $this->_cover;
     }
 
     public function getTags()
@@ -140,6 +146,11 @@ class Hobby extends Entities implements JsonSerializable
         $this->_city = $city;
     }
 
+    public function setCover($cover)
+    {
+        $this->_cover = $cover;
+    }
+
     /**
      * toArray declared in Entities
      *
@@ -163,6 +174,7 @@ class Hobby extends Entities implements JsonSerializable
             'street' => $this->_street,
             'zip_code' => $this->_zip_code,
             'city' => $this->_city,
+            'cover' => $this->_cover,
             'tags' => $tags
         );
         return $array;
@@ -174,12 +186,20 @@ class Hobby extends Entities implements JsonSerializable
     }
 
     public function addTag($tag) {
-        array_push($this->_tags(), $tag);
+        if ($this->_tags == null) {
+            $this->_tags = array();
+        }
+        array_push($this->_tags, $tag);
     }
 
     public function jsonSerialize() 
     {
         return $this->toArray();
+    }
+
+    public function shortDescription()
+    {
+        return substr($this->_description, 0, 150);
     }
 }
 

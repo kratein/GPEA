@@ -42,7 +42,6 @@ class TagDAO
                 AND H.id_HobbyActivity = A.id
                 AND id_hobbyactivity = :id';
         $result = Database::getInstance()->query($query, $params);
-        var_dump($result);
         foreach ($result as $row) {
             $tags[] = Tag::create($row);
         }

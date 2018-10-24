@@ -24,7 +24,14 @@ function GetHobbiesObject() {
     $json = json_decode($json); 
     $hobbies = array();
     foreach ($json->data as $hobby) {
-        $hobbies[] = Hobby::create($hobby);
+        $tagsHobby = array();
+        $newHobby = Hobby::create($hobby);
+        //$hobbies[] = Hobby::create($hobby);
+        foreach($hobby->tags as $tags) {
+            $tagsHobby[] = Tag::create($tags);
+        }
+        $newHobby->setTags($tagsHobby);
+        $hobbies[] = $newHobby;
     }
     return $hobbies;
 }

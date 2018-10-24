@@ -32,6 +32,21 @@ class PhotoDAO
         return null;
     }
 
+    public static function getPhotoByActivity ($activityId) 
+    {
+        $params = array(
+            'id' => $activityId
+        );
+        $photos = array();
+        $query = 'SELECT * FROM photo 
+                  WHERE id_hobbyactivity = :id';
+        $result = Database::getInstance()->query($query, $params);
+        foreach ($result as $row) {
+            $photos[] = Photo::create($row);
+        }
+        return $photos;
+    }
+
     public static function add($photo)
     {
         $params = array(
