@@ -1,47 +1,12 @@
 <html>
   <?php require_once 'components/head.php'; ?>
   <body>
-    <?php require_once 'components/header.php'; ?>
-    <div id="slides" class="carousel slide" data-ride="carousel">
-<ul class="carousel-indicators">
-	<li data-target="#slides" data-slide-to="0" class="active"></li>
-	<li data-target="#slides" data-slide-to="1"></li>
-	<li data-target="#slides" data-slide-to="2"></li>
-</ul>
-<div class="carousel-inner">
-	<div class="carousel-item active">
-		<div class="row">
-			<div class="col-md-12">
-				<img src=ressources/img/banc-bowling.png>
-				<div class="carousel-caption center">
-					<h1 class="display-2">Bowling</h1>
-					<h3>Shoot it like the dude</h3>
-					<a href="reservation/1/"><button type="button" class="btn btn-outline-light btn-lg">Réserver</button></a>
-					<button type="button" class="btn btn-primary btn-lg">Plus d'infos</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="carousel-item">
-		<img src=ressources/img/background2.png>
-			<div class="carousel-caption">
-				<h1 class="display-2">Paintball</h1>
-				<h3>Je te mets au defi de resortir de la tout propre</h3>
-				<button type="button" class="btn btn-outline-light btn-lg">Réserver</button>
-				<button type="button" class="btn btn-primary btn-lg">Plus d'infos</button>
-			</div>
-	</div>
-	<div class="carousel-item">
-		<img src=ressources/img/background3.png>
-		<div class="carousel-caption">
-			<h1 class="display-2">Karting</h1>
-			<h3>Viens faire vibrer l'asphalt</h3>
-			<button type="button" class="btn btn-outline-light btn-lg">Réserver</button>
-			<button type="button" class="btn btn-primary btn-lg">Plus d'infos</button>
-		</div>
-	</div>
-</div>
-</div>
+	<?php 
+		require_once 'components/header.php'; 
+		require_once '../controller/controller_home.php';
+		$activities = carousel_data();
+		carousel_display();
+	?>
 <!--- Jumbotron -->
 <div class="container-fluid">
 	<div class="row jumbotron">

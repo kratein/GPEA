@@ -26,6 +26,7 @@ class Hobby extends Entities implements JsonSerializable
     private $_city;
     private $_tags;
     private $_cover;
+    private $_slogan;
 
     /**
      * Default constructor empty
@@ -58,6 +59,7 @@ class Hobby extends Entities implements JsonSerializable
         $hobby->setZipCode($stdClass->zip_code);
         $hobby->setCity($stdClass->city);
         $hobby->setCover($stdClass->cover);
+        $hobby->setSlogan($stdClass->slogan);
         return $hobby;
     }
 
@@ -175,7 +177,8 @@ class Hobby extends Entities implements JsonSerializable
             'zip_code' => $this->_zip_code,
             'city' => $this->_city,
             'cover' => $this->_cover,
-            'tags' => $tags
+            'tags' => $tags,
+            'slogan' => $this->_slogan
         );
         return $array;
     }
@@ -200,6 +203,26 @@ class Hobby extends Entities implements JsonSerializable
     public function shortDescription()
     {
         return substr($this->_description, 0, 150);
+    }
+
+    /**
+     * Set the value of _slogan
+     *
+     * @return  self
+     */ 
+    public function setSlogan($_slogan)
+    {
+        $this->_slogan = $_slogan;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of _slogan
+     */ 
+    public function getSlogan()
+    {
+        return $this->_slogan;
     }
 }
 
