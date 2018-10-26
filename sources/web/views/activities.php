@@ -3,8 +3,17 @@
   <body>
     <?php 
         require_once 'components/header.php'; 
-
-        $activities = GetHobbiesObject();
+        require_once '../controller/controller_activities.php';
+        //$activities = GetHobbiesObject();
+        if(!empty($_GET['page']))
+        {
+          $page = $_GET['page'];
+        }
+        else 
+        {
+          $page = 1;
+        }
+        $activities = data_page($page);
     ?>
     <!-- card thumbnail 348*225px -->
     <section class="jumbotron text-center">
@@ -20,7 +29,7 @@
               foreach ($activities as $activity) {
                 echo "<div class='col-md-4'>
                 <div class='card mb-4 shadow-sm'>
-                  <img class='card-img-top' width='348' heigt='255' src='".$activity->getCover()."'>
+                  <img class='card-img-top' width='348' heigt='255' src='".$domain.$activity->getCover()."'>
                   <div class='card-header'>
                     <div class='mx-auto'>
                       <p>".$activity->getLabel()."</p>
@@ -41,6 +50,9 @@
               }
             ?>
           </div>
+          <?php 
+          pagination($activities, $page);
+          ?>
         </div>
       </div>
 

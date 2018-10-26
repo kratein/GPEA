@@ -1,6 +1,6 @@
 Options +FollowSymlinks
 RewriteEngine On
 RewriteRule ^accueil$ views/home.php [L]
-RewriteRule ^activites$ views/activities.php [L]
+RewriteRule ^activites/page/([0-9]+) views/activities.php?page=$1 [QSA]
 RewriteRule ^reservation/([0-9]+) views/booking.php?id=$1 [L]
-RewriteRule ^activite/([0-9]+)$ views/activity.php?id=$1 [QSA]
+RewriteRule ^activite/([0-9]+) views/activity.php?id=$1 [QSA]

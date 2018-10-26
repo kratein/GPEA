@@ -13,7 +13,7 @@
   <a class="logo" href=<?php echo $domain."accueil"?>><i class="fas fa-quidditch"></i></a>
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href=<?php echo $domain."activites"?>>Activités</a>
+        <a class="nav-link" href=<?php echo $domain."activites/page/1"?>>Activités</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
