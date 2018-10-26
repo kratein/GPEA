@@ -7,6 +7,12 @@
         $activities = GetHobbiesObject();
     ?>
     <!-- card thumbnail 348*225px -->
+    <section class="jumbotron text-center">
+        <div class="container">
+          <h1 class="jumbotron-heading">Nos activités</h1>
+          <p class="lead text-muted">Voici toutes les activités que nous vous proposons</p>
+        </div>
+      </section>
     <div class="album py-5 bg-light">
         <div class="container">
           <div class="row">

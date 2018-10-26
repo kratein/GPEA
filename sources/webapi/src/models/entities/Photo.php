@@ -101,8 +101,8 @@ class Photo extends Entities implements JsonSerializable
             'id' => $this->_id,
             'title' => $this->_title,
             'path' => $this->_path,
-            'desciption' => $this->_description,
-            'hobby' => $this->_hobby
+            'description' => $this->_description,
+            'id_hobbyactivity' => $this->_hobby
         );
         return $array;
     }

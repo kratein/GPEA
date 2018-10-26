@@ -1,6 +1,7 @@
 <?php
 require_once ('../../webapi/src/models/entities/Tag.php');
 require_once ('../../webapi/src/models/entities/Hobby.php');
+require_once ('../../webapi/src/models/entities/Photo.php');
 
 function GetTagsObject() {
     $json = file_get_contents("http://localhost/GPEA/sources/webapi/src/models/api.php?name=tag");
@@ -26,7 +27,6 @@ function GetHobbiesObject() {
     foreach ($json->data as $hobby) {
         $tagsHobby = array();
         $newHobby = Hobby::create($hobby);
-        //$hobbies[] = Hobby::create($hobby);
         foreach($hobby->tags as $tags) {
             $tagsHobby[] = Tag::create($tags);
         }
@@ -51,6 +51,16 @@ function GetTagsActivityObject($id) {
         $tags[] = Tag::create($tag);
     }
     return $tags;
+}
+
+function GetPhotosActivity($id) {
+    $json = file_get_contents("http://localhost/GPEA/sources/webapi/src/models/api.php?name=photo&activity=$id");
+    $json = json_decode($json); 
+    $photos = array();
+    foreach ($json->data as $photo) {
+        $photos[] = Photo::create($photo);
+    }
+    return $photos;
 }
     
 ?>

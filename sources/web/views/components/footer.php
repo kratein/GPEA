@@ -19,6 +19,7 @@
 		<div class="col-md-4">
 			<hr class = "light">
 			<h5>Mentions Légales</h5>
+			<p>Rien n'est vrai, tout est permis</p>
 		</div>
 		<div class="col-12">
 			<hr class="light">
