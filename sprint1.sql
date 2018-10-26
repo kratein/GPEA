@@ -1,77 +1,318 @@
-create database IF NOT EXISTS gpe;
-create user if not exists ‘user_gpe’@‘localhost’ IDENTIFIED BY 'password';
-USE gpe;
-DROP TABLE IF EXISTS hobbyactivity ;
-grant ALL PRIVILEGES ON gpe.* to ‘user_gpe’@‘localhost;
-CREATE TABLE hobbyactivity (id INT AUTO_INCREMENT NOT NULL,
-label TEXT,
-description TEXT,
-web_site TEXT,
-minimum_older INT,
-street TEXT,
-zip_code INT,
-city TEXT,
-PRIMARY KEY (id)) ENGINE=InnoDB;
+-- phpMyAdmin SQL Dump
+-- version 4.6.6deb4
+-- https://www.phpmyadmin.net/
+--
+-- Client :  localhost:3306
+-- Généré le :  Ven 26 Octobre 2018 à 14:04
+-- Version du serveur :  10.1.23-MariaDB-9+deb9u1
+-- Version de PHP :  7.0.27-0+deb9u1
 
-DROP TABLE IF EXISTS tag ;
-CREATE TABLE tag (id INT AUTO_INCREMENT NOT NULL,
-label TEXT,
-PRIMARY KEY (id)) ENGINE=InnoDB;
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
-DROP TABLE IF EXISTS photo ;
-CREATE TABLE photo (id INT AUTO_INCREMENT NOT NULL,
-title TEXT,
-path TEXT,
-description TEXT,
-id_hobbyactivity INT,
-PRIMARY KEY (id)) ENGINE=InnoDB;
 
-DROP TABLE IF EXISTS user ;
-CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL,
-name TEXT,
-firstname TEXT,
-birthday DATE,
-email TEXT,
-password TEXT,
-street TEXT,
-zip_code INT,
-city TEXT,
-id_role INT,
-photo TEXT,
-PRIMARY KEY (id)) ENGINE=InnoDB;
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
-DROP TABLE IF EXISTS booking ;
-CREATE TABLE booking (id INT AUTO_INCREMENT NOT NULL,
-user_id int  NOT NULL,
-n_people int  NOT NULL,
-activity_id int  NOT NULL,
-PRIMARY KEY (id)) ENGINE=InnoDB;
+--
+-- Base de données :  `gpe`
+--
+CREATE DATABASE IF NOT EXISTS `gpe` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `gpe`;
 
-DROP TABLE IF EXISTS role ;
-CREATE TABLE role (id INT AUTO_INCREMENT NOT NULL,
-label TEXT,
-PRIMARY KEY (id)) ENGINE=InnoDB;
+-- --------------------------------------------------------
 
-DROP TABLE IF EXISTS post ;
-CREATE TABLE post (id INT AUTO_INCREMENT NOT NULL,
-content TEXT,
-grade FLOAT,
-id_user INT,
-id_hobbyactivity INT,
-PRIMARY KEY (id)) ENGINE=InnoDB;
+--
+-- Structure de la table `booking`
+--
 
-DROP TABLE IF EXISTS has_tags ;
-CREATE TABLE has_tags (id_tag INT AUTO_INCREMENT NOT NULL,
-id_hobbyactivity INT NOT NULL,
-PRIMARY KEY (id_tag,
- id_hobbyactivity)) ENGINE=InnoDB;
+CREATE TABLE `booking` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `n_people` int(11) NOT NULL,
+  `activity_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-ALTER TABLE photo ADD CONSTRAINT FK_photo_hobbyactivity_id_hobbyactivity FOREIGN KEY (id_hobbyactivity) REFERENCES hobbyactivity (id);
+-- --------------------------------------------------------
 
-ALTER TABLE user ADD CONSTRAINT FK_user_id_role FOREIGN KEY (id_role) REFERENCES role (id);
-ALTER TABLE post ADD CONSTRAINT FK_post_id_Utilisateur FOREIGN KEY (id_user) REFERENCES user (id);
-ALTER TABLE post ADD CONSTRAINT FK_post_id_HobbyActivity FOREIGN KEY (id_hobbyactivity) REFERENCES hobbyactivity (id);
-ALTER TABLE has_tags ADD CONSTRAINT FK_has_tags_id_TAG FOREIGN KEY (id_tag) REFERENCES tag (id);
-ALTER TABLE has_tags ADD CONSTRAINT FK_has_tags_id_HobbyActivity FOREIGN KEY (id_hobbyactivity) REFERENCES hobbyactivity (id);
-ALTER TABLE booking ADD CONSTRAINT FK_user_id FOREIGN KEY (user_id) REFERENCES user(id);
-ALTER TABLE booking ADD CONSTRAINT FK_activity_id FOREIGN KEY(activity_id) REFERENCES hobbyactivity(id);
+--
+-- Structure de la table `has_tags`
+--
+
+CREATE TABLE `has_tags` (
+  `id_tag` int(11) NOT NULL,
+  `id_hobbyactivity` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `has_tags`
+--
+
+INSERT INTO `has_tags` (`id_tag`, `id_hobbyactivity`) VALUES
+(1, 1),
+(1, 2),
+(2, 3),
+(3, 2),
+(4, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `hobbyactivity`
+--
+
+CREATE TABLE `hobbyactivity` (
+  `id` int(11) NOT NULL,
+  `label` text,
+  `description` text,
+  `web_site` text,
+  `minimum_older` int(11) DEFAULT NULL,
+  `street` text,
+  `zip_code` varchar(5) DEFAULT NULL,
+  `city` text,
+  `cover` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `hobbyactivity`
+--
+
+INSERT INTO `hobbyactivity` (`id`, `label`, `description`, `web_site`, `minimum_older`, `street`, `zip_code`, `city`, `cover`) VALUES
+(1, 'Paintball', '\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc congue sapien in nulla pharetra convallis. Integer et erat tellus. Duis in erat pulvinar, vulputate massa ac, semper mauris. Aenean mauris elit, pellentesque accumsan nibh non, suscipit pellentesque nibh. Praesent nec tortor eget nulla gravida egestas. Proin cursus turpis ac lacus accumsan, eu dictum arcu elementum. Nam elementum ligula elit. Maecenas nec iaculis quam. Fusce ut nisi eu sem posuere egestas ac id metus. Integer posuere.', 'www.paintball.fr', 14, '42 rue lorem ipsum', '75000', 'Lorem Ipsum', 'ressources/img/background2.png'),
+(2, 'Karting', '\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc congue sapien in nulla pharetra convallis. Integer et erat tellus. Duis in erat pulvinar, vulputate massa ac, semper mauris. Aenean mauris elit, pellentesque accumsan nibh non, suscipit pellentesque nibh. Praesent nec tortor eget nulla gravida egestas. Proin cursus turpis ac lacus accumsan, eu dictum arcu elementum. Nam elementum ligula elit. Maecenas nec iaculis quam. Fusce ut nisi eu sem posuere egestas ac id metus. Integer posuere.', 'www.karting.fr', 16, '1 rue lorem ispum', '75000', 'Lorem Ipsum', 'ressources/img/background3.png'),
+(3, 'Bowling', '\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc congue sapien in nulla pharetra convallis. Integer et erat tellus. Duis in erat pulvinar, vulputate massa ac, semper mauris. Aenean mauris elit, pellentesque accumsan nibh non, suscipit pellentesque nibh. Praesent nec tortor eget nulla gravida egestas. Proin cursus turpis ac lacus accumsan, eu dictum arcu elementum. Nam elementum ligula elit. Maecenas nec iaculis quam. Fusce ut nisi eu sem posuere egestas ac id metus. Integer posuere.', 'www.bowling.fr', 5, '3 rue lorem ipsum', '75000', 'Lorem Ipsum', 'ressources/img/banc-bowling.png');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `photo`
+--
+
+CREATE TABLE `photo` (
+  `id` int(11) NOT NULL,
+  `title` text,
+  `path` text,
+  `description` text,
+  `id_hobbyactivity` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `photo`
+--
+
+INSERT INTO `photo` (`id`, `title`, `path`, `description`, `id_hobbyactivity`) VALUES
+(1, 'paintball_presentation', 'ressources/img/thumbnail/paintball.png', 'Lorem ipsum dolor sit amet', 1),
+(2, 'bowling_presentation', 'ressources/img/thumbnail/bowling.png', 'Lorem ipsum dolor sit amet', 3),
+(3, 'karting_presentation', 'ressources/img/thumbnail/karting.png', 'Lorem ipsum dolor sit amet', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `post`
+--
+
+CREATE TABLE `post` (
+  `id` int(11) NOT NULL,
+  `content` text,
+  `grade` float DEFAULT NULL,
+  `id_user` int(11) DEFAULT NULL,
+  `id_hobbyactivity` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `role`
+--
+
+CREATE TABLE `role` (
+  `id` int(11) NOT NULL,
+  `label` text
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `tag`
+--
+
+CREATE TABLE `tag` (
+  `id` int(11) NOT NULL,
+  `label` text
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `tag`
+--
+
+INSERT INTO `tag` (`id`, `label`) VALUES
+(1, 'extérieur'),
+(2, 'intérieur'),
+(3, 'seul'),
+(4, 'équipe');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `name` text,
+  `firstname` text,
+  `birthday` date DEFAULT NULL,
+  `email` text,
+  `password` text,
+  `street` text,
+  `zip_code` int(11) DEFAULT NULL,
+  `city` text,
+  `id_role` int(11) DEFAULT NULL,
+  `photo` text
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Index pour les tables exportées
+--
+
+--
+-- Index pour la table `booking`
+--
+ALTER TABLE `booking`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FK_user_id` (`user_id`),
+  ADD KEY `FK_activity_id` (`activity_id`);
+
+--
+-- Index pour la table `has_tags`
+--
+ALTER TABLE `has_tags`
+  ADD PRIMARY KEY (`id_tag`,`id_hobbyactivity`),
+  ADD KEY `FK_has_tags_id_HobbyActivity` (`id_hobbyactivity`);
+
+--
+-- Index pour la table `hobbyactivity`
+--
+ALTER TABLE `hobbyactivity`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `photo`
+--
+ALTER TABLE `photo`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FK_photo_hobbyactivity_id_hobbyactivity` (`id_hobbyactivity`);
+
+--
+-- Index pour la table `post`
+--
+ALTER TABLE `post`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FK_post_id_Utilisateur` (`id_user`),
+  ADD KEY `FK_post_id_HobbyActivity` (`id_hobbyactivity`);
+
+--
+-- Index pour la table `role`
+--
+ALTER TABLE `role`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `tag`
+--
+ALTER TABLE `tag`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FK_user_id_role` (`id_role`);
+
+--
+-- AUTO_INCREMENT pour les tables exportées
+--
+
+--
+-- AUTO_INCREMENT pour la table `booking`
+--
+ALTER TABLE `booking`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `has_tags`
+--
+ALTER TABLE `has_tags`
+  MODIFY `id_tag` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT pour la table `hobbyactivity`
+--
+ALTER TABLE `hobbyactivity`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT pour la table `photo`
+--
+ALTER TABLE `photo`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT pour la table `post`
+--
+ALTER TABLE `post`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `role`
+--
+ALTER TABLE `role`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `tag`
+--
+ALTER TABLE `tag`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT pour la table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- Contraintes pour les tables exportées
+--
+
+--
+-- Contraintes pour la table `booking`
+--
+ALTER TABLE `booking`
+  ADD CONSTRAINT `FK_activity_id` FOREIGN KEY (`activity_id`) REFERENCES `hobbyactivity` (`id`),
+  ADD CONSTRAINT `FK_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+
+--
+-- Contraintes pour la table `has_tags`
+--
+ALTER TABLE `has_tags`
+  ADD CONSTRAINT `FK_has_tags_id_HobbyActivity` FOREIGN KEY (`id_hobbyactivity`) REFERENCES `hobbyactivity` (`id`),
+  ADD CONSTRAINT `FK_has_tags_id_TAG` FOREIGN KEY (`id_tag`) REFERENCES `tag` (`id`);
+
+--
+-- Contraintes pour la table `photo`
+--
+ALTER TABLE `photo`
+  ADD CONSTRAINT `FK_photo_hobbyactivity_id_hobbyactivity` FOREIGN KEY (`id_hobbyactivity`) REFERENCES `hobbyactivity` (`id`);
+
+--
+-- Contraintes pour la table `post`
+--
+ALTER TABLE `post`
+  ADD CONSTRAINT `FK_post_id_HobbyActivity` FOREIGN KEY (`id_hobbyactivity`) REFERENCES `hobbyactivity` (`id`),
+  ADD CONSTRAINT `FK_post_id_Utilisateur` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`);
+
+--
+-- Contraintes pour la table `user`
+--
+ALTER TABLE `user`
+  ADD CONSTRAINT `FK_user_id_role` FOREIGN KEY (`id_role`) REFERENCES `role` (`id`);
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
