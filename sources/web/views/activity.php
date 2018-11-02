@@ -10,26 +10,34 @@
             $hobby = GetHobbyObject($id);
             $photos = GetPhotosActivityObject($hobby->getId());
         ?>
-        <section class="jumbotron text-center">
-        <div class="container">
-          <h1 class="jumbotron-heading"><?php echo $hobby->getLabel() ?></h1>
-          <p class="lead text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc congue sapien in nulla pharetra convallis. Integer et erat tellus.</p>
-          <div class="row">
-          <?php
-          foreach ($photos as $photo) {         
-            echo "
-            <div class='col-md-6'>
-              <img id='myImg' class='card-img-top' width='348' heigt='255' src='".$domain.$photo->getPath()."'>
-              <div id='myModal' class='modal'>
-
-                <!-- The Close Button -->
-                <span class='close'>&times;</span>
-
-                <!-- Modal Content (The Image) -->
-                <img class='modal-content' id='img01'>
-
-                <!-- Modal Caption (Image Text) -->
-                <div id='caption'></div>
+          <section class="jumbotron text-center">
+            <div class="container">
+              <h1 class="jumbotron-heading"><?php echo $hobby->getLabel(); ?></h1>
+              <p class="lead text-muted"><?php echo $hobby->getSlogan(); ?></p>
+            </div>
+            </section>
+            <div class="container">
+             <div class="row">
+            <?php 
+              foreach($photos as $photo) {
+                echo "<div class='col-md-4'>
+                <img  width='348' heigt='255' src='".$domain.$photo->getPath()."'>
+                </div>
+                ";
+              }
+            ?>
+            
+            </div></div>
+            <div class="container">
+              <div class="row">
+                <div class='col-md-8'>
+                  <p class="text-justify"><?php echo $hobby->getDescription(); ?></p>
+                </div>
+                  <div class='col-md-4'>
+                    <p><?php echo $hobby->getAddress(); ?></p>
+                    <p><?php echo 'Prix : '.$hobby->getPrice().' €'; ?></p>
+                    <a href=<?php echo "'".$domain."reservation/".$hobby->getId()."'"; ?>><button type='button' class='btn btn-dark'>Réserver</button></a>
+                  </div>
               </div>
             </div>";
           }
