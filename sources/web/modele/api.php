@@ -53,7 +53,7 @@ function GetTagsActivityObject($id) {
     return $tags;
 }
 
-function GetPhotosActivity($id) {
+function GetPhotosActivityObject($id) {
     $json = file_get_contents("http://localhost/GPEA/sources/webapi/src/models/api.php?name=photo&activity=$id");
     $json = json_decode($json); 
     $photos = array();
