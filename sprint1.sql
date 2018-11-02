@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6deb4
+-- version 4.6.4
 -- https://www.phpmyadmin.net/
 --
--- Client :  localhost:3306
--- Généré le :  Ven 26 Octobre 2018 à 14:04
--- Version du serveur :  10.1.23-MariaDB-9+deb9u1
--- Version de PHP :  7.0.27-0+deb9u1
+-- Client :  127.0.0.1
+-- Généré le :  Ven 02 Novembre 2018 à 10:25
+-- Version du serveur :  5.7.14
+-- Version de PHP :  7.0.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -52,10 +52,10 @@ CREATE TABLE `has_tags` (
 
 INSERT INTO `has_tags` (`id_tag`, `id_hobbyactivity`) VALUES
 (1, 1),
+(4, 1),
 (1, 2),
-(2, 3),
 (3, 2),
-(4, 1);
+(2, 3);
 
 -- --------------------------------------------------------
 
@@ -72,17 +72,19 @@ CREATE TABLE `hobbyactivity` (
   `street` text,
   `zip_code` varchar(5) DEFAULT NULL,
   `city` text,
-  `cover` text NOT NULL
+  `cover` text NOT NULL,
+  `slogan` varchar(150) NOT NULL,
+  `price` decimal(10,0) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `hobbyactivity`
 --
 
-INSERT INTO `hobbyactivity` (`id`, `label`, `description`, `web_site`, `minimum_older`, `street`, `zip_code`, `city`, `cover`) VALUES
-(1, 'Paintball', '\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc congue sapien in nulla pharetra convallis. Integer et erat tellus. Duis in erat pulvinar, vulputate massa ac, semper mauris. Aenean mauris elit, pellentesque accumsan nibh non, suscipit pellentesque nibh. Praesent nec tortor eget nulla gravida egestas. Proin cursus turpis ac lacus accumsan, eu dictum arcu elementum. Nam elementum ligula elit. Maecenas nec iaculis quam. Fusce ut nisi eu sem posuere egestas ac id metus. Integer posuere.', 'www.paintball.fr', 14, '42 rue lorem ipsum', '75000', 'Lorem Ipsum', 'ressources/img/background2.png'),
-(2, 'Karting', '\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc congue sapien in nulla pharetra convallis. Integer et erat tellus. Duis in erat pulvinar, vulputate massa ac, semper mauris. Aenean mauris elit, pellentesque accumsan nibh non, suscipit pellentesque nibh. Praesent nec tortor eget nulla gravida egestas. Proin cursus turpis ac lacus accumsan, eu dictum arcu elementum. Nam elementum ligula elit. Maecenas nec iaculis quam. Fusce ut nisi eu sem posuere egestas ac id metus. Integer posuere.', 'www.karting.fr', 16, '1 rue lorem ispum', '75000', 'Lorem Ipsum', 'ressources/img/background3.png'),
-(3, 'Bowling', '\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc congue sapien in nulla pharetra convallis. Integer et erat tellus. Duis in erat pulvinar, vulputate massa ac, semper mauris. Aenean mauris elit, pellentesque accumsan nibh non, suscipit pellentesque nibh. Praesent nec tortor eget nulla gravida egestas. Proin cursus turpis ac lacus accumsan, eu dictum arcu elementum. Nam elementum ligula elit. Maecenas nec iaculis quam. Fusce ut nisi eu sem posuere egestas ac id metus. Integer posuere.', 'www.bowling.fr', 5, '3 rue lorem ipsum', '75000', 'Lorem Ipsum', 'ressources/img/banc-bowling.png');
+INSERT INTO `hobbyactivity` (`id`, `label`, `description`, `web_site`, `minimum_older`, `street`, `zip_code`, `city`, `cover`, `slogan`, `price`) VALUES
+(1, 'Paintball', '\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc congue sapien in nulla pharetra convallis. Integer et erat tellus. Duis in erat pulvinar, vulputate massa ac, semper mauris. Aenean mauris elit, pellentesque accumsan nibh non, suscipit pellentesque nibh. Praesent nec tortor eget nulla gravida egestas. Proin cursus turpis ac lacus accumsan, eu dictum arcu elementum. Nam elementum ligula elit. Maecenas nec iaculis quam. Fusce ut nisi eu sem posuere egestas ac id metus. Integer posuere.', 'www.paintball.fr', 14, '42 rue lorem ipsum', '75000', 'Lorem Ipsum', 'ressources/img/background2.png', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin molestie odio in euismod dapibus. Duis cursus ipsum at sem ultricies, sed lobortis sed.', '0'),
+(2, 'Karting', '\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc congue sapien in nulla pharetra convallis. Integer et erat tellus. Duis in erat pulvinar, vulputate massa ac, semper mauris. Aenean mauris elit, pellentesque accumsan nibh non, suscipit pellentesque nibh. Praesent nec tortor eget nulla gravida egestas. Proin cursus turpis ac lacus accumsan, eu dictum arcu elementum. Nam elementum ligula elit. Maecenas nec iaculis quam. Fusce ut nisi eu sem posuere egestas ac id metus. Integer posuere.', 'www.karting.fr', 16, '1 rue lorem ispum', '75000', 'Lorem Ipsum', 'ressources/img/background3.png', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin molestie odio in euismod dapibus. Duis cursus ipsum at sem ultricies, sed lobortis sed.', '0'),
+(3, 'Bowling', '\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc congue sapien in nulla pharetra convallis. Integer et erat tellus. Duis in erat pulvinar, vulputate massa ac, semper mauris. Aenean mauris elit, pellentesque accumsan nibh non, suscipit pellentesque nibh. Praesent nec tortor eget nulla gravida egestas. Proin cursus turpis ac lacus accumsan, eu dictum arcu elementum. Nam elementum ligula elit. Maecenas nec iaculis quam. Fusce ut nisi eu sem posuere egestas ac id metus. Integer posuere.', 'www.bowling.fr', 5, '3 rue lorem ipsum', '75000', 'Lorem Ipsum', 'ressources/img/banc-bowling.png', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin molestie odio in euismod dapibus. Duis cursus ipsum at sem ultricies, sed lobortis sed.', '0');
 
 -- --------------------------------------------------------
 
@@ -103,9 +105,12 @@ CREATE TABLE `photo` (
 --
 
 INSERT INTO `photo` (`id`, `title`, `path`, `description`, `id_hobbyactivity`) VALUES
-(1, 'paintball_presentation', 'ressources/img/thumbnail/paintball.png', 'Lorem ipsum dolor sit amet', 1),
-(2, 'bowling_presentation', 'ressources/img/thumbnail/bowling.png', 'Lorem ipsum dolor sit amet', 3),
-(3, 'karting_presentation', 'ressources/img/thumbnail/karting.png', 'Lorem ipsum dolor sit amet', 2);
+(1, 'paintball_presentation', 'ressources/img/background2.png', 'Lorem ipsum dolor sit amet', 1),
+(2, 'bowling_presentation', 'ressources/img/banc-bowling.png', 'Lorem ipsum dolor sit amet', 3),
+(3, 'karting_presentation', 'ressources/img/background3.png', 'Lorem ipsum dolor sit amet', 2),
+(4, NULL, 'ressources/img/background3.png', NULL, 2),
+(5, NULL, 'ressources/img/background3.png', NULL, 2),
+(6, NULL, 'ressources/img/background3.png', NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -255,7 +260,7 @@ ALTER TABLE `hobbyactivity`
 -- AUTO_INCREMENT pour la table `photo`
 --
 ALTER TABLE `photo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT pour la table `post`
 --
