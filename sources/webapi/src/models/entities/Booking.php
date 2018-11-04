@@ -23,10 +23,9 @@ class Booking extends Entities implements JsonSerializable
             return null;
         }
         $booking = new Booking();
-        $booking->setId($stdClass->id);
-        $booking->setN_People($stdClass->n_people);
-        $booking->setUser(UserDao::get($stdClass->id_user));
-        $booking->setHobby(HobbyDao::get($stdClass->id_hobbyactivity));
+        $booking->setN_People(2);
+        $booking->setUser_Id(1);
+        $booking->setActivity_Id(1);
         return $booking;
     }
 
