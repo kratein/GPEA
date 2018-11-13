@@ -5,10 +5,10 @@ require_once ('../../webapi/src/models/entities/Photo.php');
 require_once ('../../webapi/src/models/DAO/BookingDao.php');
 
 function GetTagsObject() {
-    $json = file_get_contents("http://localhost/GPEA/sources/webapi/src/models/api.php?name=tag");
+    $json = file_get_contents("http://localhost:8080/api/tag/all");
     $json = json_decode($json); 
     $tags = array();
-    foreach ($json->data as $tag) {
+    foreach ($json as $tag) {
         $tags[] = Tag::create($tag);
     }
     return $tags;
@@ -19,32 +19,26 @@ function addBooking($stdClass){
 
 
 function GetTagObject($id) {
-    $json = file_get_contents("http://localhost/GPEA/sources/webapi/src/models/api.php?name=tag&id=$id");
+    $json = file_get_contents("http://localhost:8080/api/tag/$id");
     $json = json_decode($json);
-    $tag = Tag::create($json->data);
+    $tag = Tag::create($json);
     return $tag;
 }
 
 function GetHobbiesObject() {
-    $json = file_get_contents("http://localhost/GPEA/sources/webapi/src/models/api.php?name=hobby");
+    $json = file_get_contents("http://localhost:8080/api/activity/all");
     $json = json_decode($json); 
     $hobbies = array();
-    foreach ($json->data as $hobby) {
-        $tagsHobby = array();
-        $newHobby = Hobby::create($hobby);
-        foreach($hobby->tags as $tags) {
-            $tagsHobby[] = Tag::create($tags);
-        }
-        $newHobby->setTags($tagsHobby);
-        $hobbies[] = $newHobby;
+    foreach ($json as $hobby) {
+        $hobbies[] = Hobby::create($hobby);
     }
     return $hobbies;
 }
 
 function GetHobbyObject($id) {
-    $json = file_get_contents("http://localhost/GPEA/sources/webapi/src/models/api.php?name=hobby&id=$id");
+    $json = file_get_contents("http://localhost:8080/api/activity/$id");
     $json = json_decode($json);
-    $hobby = Hobby::create($json->data);
+    $hobby = Hobby::create($json);
     return $hobby;
 }
 

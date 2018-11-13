@@ -55,7 +55,7 @@ class Hobby extends Entities implements JsonSerializable
         $hobby->setLabel($stdClass->label);
         $hobby->setDescription($stdClass->description);
         $hobby->setWebSite($stdClass->web_site);
-        $hobby->setOlder($stdClass->minimum_older);
+        $hobby->setOlder($stdClass->min_older);
         $hobby->setStreet($stdClass->street);
         $hobby->setZipCode($stdClass->zip_code);
         $hobby->setCity($stdClass->city);
