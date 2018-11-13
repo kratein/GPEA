@@ -21,7 +21,7 @@
             <?php 
               foreach($photos as $photo) {
                 echo "<div class='col-md-4'>
-                <img  width='348' heigt='255' src='".$domain.$photo->getPath()."'>
+                <img  width='348' heigth='255' src='".$domain.$photo->getPath()."'>
                 </div>
                 ";
               }
@@ -48,10 +48,6 @@
         <?php
         }
     ?>
-    <div>
-
-    </div>
-
   <?php require_once 'components/footer.php'; ?>
   </body>
   <?php require_once 'components/footer.php'; ?>

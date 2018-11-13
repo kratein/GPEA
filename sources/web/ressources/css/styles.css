@@ -9,7 +9,23 @@ html, body {
   font-family: 'Poppins', sans-serif;
   color:#222;
 }
+.backgroundimgs{
+  width: 100%;
+  height: auto;
+}
 
+.bookingForm{
+  width: 100%;
+}
+.no-padding {
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  margin: 0 auto;
+  display: block;
+}
 .navbar {
   padding: .8rem;
 }

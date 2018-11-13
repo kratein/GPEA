@@ -1,5 +1,4 @@
 <?php
-
 /**
 * 
 */
@@ -33,8 +32,8 @@ class BookingDAO
     {
         $params = array(
             'n_people' => $booking->getN_People(),
-            'user_id' => $booking->getUser_Id()->getId(),
-            'activity_id' => $booking->getActivity_Id()->getId()
+            'user_id' => $booking->getUser_Id(),
+            'activity_id' => $booking->getActivity_Id()
 
         );
         $query = 'INSERT INTO booking (n_people, user_id, activity_id)
@@ -48,8 +47,8 @@ class BookingDAO
         $params = array(
             'id' => $post->getId(),
             'n_people' => $booking->getN_People(),
-            'user_id' => $booking->getUser_Id()->getId(),
-            'activity_id' => $booking->getActivity_Id()->getId()
+            'user_id' => $booking->getUser_Id(),
+            'activity_id' => $booking->getActivity_Id()
         );
         $query = 'UPDATE booking SET n_people = :n_people, user_id = :user_id, activity_id = :activity_id WHERE id = :id';
         $result = Database::getInstance()->exec($query, $params);

@@ -2,6 +2,7 @@
 require_once ('../../webapi/src/models/entities/Tag.php');
 require_once ('../../webapi/src/models/entities/Hobby.php');
 require_once ('../../webapi/src/models/entities/Photo.php');
+require_once ('../../webapi/src/models/DAO/BookingDao.php');
 
 function GetTagsObject() {
     $json = file_get_contents("http://localhost/GPEA/sources/webapi/src/models/api.php?name=tag");
@@ -12,6 +13,10 @@ function GetTagsObject() {
     }
     return $tags;
 }
+function addBooking($stdClass){
+    BookingDao::add($stdClass);
+}
+
 
 function GetTagObject($id) {
     $json = file_get_contents("http://localhost/GPEA/sources/webapi/src/models/api.php?name=tag&id=$id");
