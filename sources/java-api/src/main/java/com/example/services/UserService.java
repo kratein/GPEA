@@ -37,6 +37,14 @@ public class UserService {
         return response;
     }
 
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response connect(User user) {
+        Response response;
+        response = Response.status(Status.OK).entity(UserDAO.findUserByProvider(user)).build();
+        return response;
+    }
+
     @PUT
     @Path("{id}")
     @Consumes(MediaType.APPLICATION_JSON)

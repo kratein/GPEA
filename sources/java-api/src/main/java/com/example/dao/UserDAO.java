@@ -51,6 +51,13 @@ public class UserDAO extends AbstractDao<User> {
         return getListFromRequest("1", null);
     }
 
+    public User findUserByProvider(User user){
+        User userTemp = getListFromRequest("email=?", user.getEmail())
+            if (userTemp!=null && user.getPassword().equals(userTemp.getPassword()))
+                return userTemp;
+        return null
+    }
+
     public User findUserById(int id) {
         List<User> users = getListFromRequest("id=?", id);
         return users != null && users.size() > 0 ? users.get(0) : null;
