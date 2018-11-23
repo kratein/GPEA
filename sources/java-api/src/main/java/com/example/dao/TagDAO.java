@@ -15,11 +15,11 @@ import com.example.exception.CustomException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public class TagDAO extends AbstractDao<Tag> {
-    private static final Log LOG = LogFactory.getLog(TagDAO.class);
+public class TagDao extends AbstractDao<Tag> {
+    private static final Log LOG = LogFactory.getLog(TagDao.class);
     private static final String SQL_SELECT_REQUEST = "SELECT * FROM tag WHERE ";
 
-    public TagDAO() {
+    public TagDao() {
         super(SQL_SELECT_REQUEST);
     }
 

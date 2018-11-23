@@ -12,28 +12,24 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import com.example.dao.UserDAO;
+import com.example.dao.UserDao;
 import com.example.entities.User;
 import com.example.exception.CustomException;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 @Path("/user")
 @Produces(MediaType.APPLICATION_JSON)
-public class UserService {
-    private static final Log LOG = LogFactory.getLog(UserService.class);
-    private final UserDAO userDAO = new UserDAO();
+public class UserService implements BaseService<User>{
+    private final UserDao userDao = new UserDao();
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response createUser(User user) {
+    public Response create(User user) {
         Response response;
         if (user == null) {
             response = Response.status(Status.NO_CONTENT).build();
         } else {
             try {
-                response = Response.status(Status.OK).entity(userDAO.createUser(user)).build();
+                response = Response.status(Status.OK).entity(userDao.createUser(user)).build();
             } catch (CustomException cException) {
                 response = Response.status(Status.BAD_REQUEST).entity(cException.toString()).build();
             }
@@ -46,20 +42,20 @@ public class UserService {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response connect(User user) {
         Response response;
-        response = Response.status(Status.OK).entity(userDAO.findUserByProvider(user)).build();     
+        response = Response.status(Status.OK).entity(userDao.findUserByProvider(user)).build();     
         return response;
     }
 
     @PUT
     @Path("{id}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response UpdateUser(@PathParam("id") int id, User user) {
+    public Response update(@PathParam("id") int id, User user) {
         Response response;
         if (user == null) {
             response = Response.status(Status.NO_CONTENT).build();
         } else {
             try {
-                response = Response.status(Status.OK).entity(userDAO.updateUser(id, user)).build();
+                response = Response.status(Status.OK).entity(userDao.updateUser(id, user)).build();
             } catch (CustomException cException) {
                 response = Response.status(Status.BAD_REQUEST).entity(cException.toString()).build();
             }
@@ -69,10 +65,10 @@ public class UserService {
 
     @DELETE
     @Path("{id}")
-    public Response deleteUser(@PathParam("id") int id) {
+    public Response delete(@PathParam("id") int id) {
         Response response;
         try {
-            response = Response.status(Status.OK).entity(userDAO.deleteUser(id)).build();
+            response = Response.status(Status.OK).entity(userDao.deleteUser(id)).build();
         } catch (CustomException cException){
             response = Response.status(Status.BAD_REQUEST).entity(cException.toString()).build();
         }
@@ -81,13 +77,19 @@ public class UserService {
 
     @GET
     @Path("/all")
-    public Response getAllUsers() {
-        return Response.status(Status.OK).entity(userDAO.findAllUsers()).build();
+    public Response getAll() {
+        return Response.status(Status.OK).entity(userDao.findAllUsers()).build();
     }
 
     @GET
     @Path("{id}")
-    public Response getUser(@PathParam("id") int id) {
-        return Response.status(Status.OK).entity(userDAO.findUserById(id)).build();
+    public Response get(@PathParam("id") int id) {
+        return Response.status(Status.OK).entity(userDao.findUserById(id)).build();
+    }
+
+    @GET
+    @Path("role/{id}")
+    public Response getByRole(@PathParam("id") int id) {
+        return Response.status(Status.OK).entity(userDao.findUsersByRole(id)).build();
     }
 }

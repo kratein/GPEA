@@ -29,7 +29,7 @@
      }else{
       echo '
       <div class="login-container">
-    <button type="button" class="btn btn-success" data-toggle="modal" data-backdrop="false" data-target="#loginModal">Se connecter</button>
+    <button type="button" class="btn btn-success" data-toggle="modal"  data-target="#loginModal">Se connecter</button>
     </div>';
   }
   ?>

@@ -13,11 +13,11 @@ import com.example.exception.CustomException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public class UserDAO extends AbstractDao<User> {
-    private static final Log LOG = LogFactory.getLog(UserDAO.class);
+public class UserDao extends AbstractDao<User> {
+    private static final Log LOG = LogFactory.getLog(UserDao.class);
     private static final String SQL_SELECT_REQUEST = "SELECT * FROM user WHERE ";
 
-    public UserDAO() {
+    public UserDao() {
         super(SQL_SELECT_REQUEST);
     }
 
@@ -62,6 +62,11 @@ public class UserDAO extends AbstractDao<User> {
 
     public User findUserById(int id) {
         List<User> users = getListFromRequest("id=?", id);
+        return users != null && users.size() > 0 ? users.get(0) : null;
+    }
+
+    public User findUsersByRole(int id_role) {
+        List<User> users = getListFromRequest("id_role=?", id_role);
         return users != null && users.size() > 0 ? users.get(0) : null;
     }
 

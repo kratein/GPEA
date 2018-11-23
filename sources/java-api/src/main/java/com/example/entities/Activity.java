@@ -2,8 +2,6 @@ package com.example.entities;
 
 import java.io.Serializable;
 
-import com.example.entities.Entities;
-
 public class Activity extends Entities implements Serializable {
     private static final long serialVersionUID = 1L;
     private String label;

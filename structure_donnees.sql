@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Ven 02 Novembre 2018 à 10:25
+-- Généré le :  Ven 23 Novembre 2018 à 18:30
 -- Version du serveur :  5.7.14
 -- Version de PHP :  7.0.10
 
@@ -32,8 +32,17 @@ CREATE TABLE `booking` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `n_people` int(11) NOT NULL,
+  `date` datetime NOT NULL,
   `activity_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `booking`
+--
+
+INSERT INTO `booking` (`id`, `user_id`, `n_people`, `date`, `activity_id`) VALUES
+(1, 1, 2, '2018-11-23 00:00:00', 1),
+(2, 1, 5, '2018-11-23 00:00:00', 2);
 
 -- --------------------------------------------------------
 
@@ -137,6 +146,13 @@ CREATE TABLE `role` (
   `label` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Contenu de la table `role`
+--
+
+INSERT INTO `role` (`id`, `label`) VALUES
+(1, 'admin');
+
 -- --------------------------------------------------------
 
 --
@@ -177,6 +193,13 @@ CREATE TABLE `user` (
   `id_role` int(11) DEFAULT NULL,
   `photo` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `user`
+--
+
+INSERT INTO `user` (`id`, `name`, `firstname`, `birthday`, `email`, `password`, `street`, `zip_code`, `city`, `id_role`, `photo`) VALUES
+(1, 'bonin', 'dylan', '1993-11-01', 'dylan.bonin@free.fr', 'password', '4 rue pasteur', 91260, 'juvisy-sur-orge', 1, NULL);
 
 --
 -- Index pour les tables exportées
@@ -245,7 +268,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `has_tags`
 --
@@ -255,7 +278,7 @@ ALTER TABLE `has_tags`
 -- AUTO_INCREMENT pour la table `hobbyactivity`
 --
 ALTER TABLE `hobbyactivity`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT pour la table `photo`
 --
@@ -270,7 +293,7 @@ ALTER TABLE `post`
 -- AUTO_INCREMENT pour la table `role`
 --
 ALTER TABLE `role`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT pour la table `tag`
 --

@@ -12,24 +12,24 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import com.example.dao.TagDAO;
+import com.example.dao.TagDao;
 import com.example.entities.Tag;
 import com.example.exception.CustomException;
 
 @Path("/tag")
 @Produces(MediaType.APPLICATION_JSON)
-public class TagService {
-    private final TagDAO tagDAO = new TagDAO();
+public class TagService implements BaseService<Tag>{
+    private final TagDao tagDao = new TagDao();
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response createTag(Tag tag) {
+    public Response create(Tag tag) {
         Response response;
         if (tag == null) {
             response = Response.status(Status.NO_CONTENT).build();
         } else {
             try {
-                response = Response.status(Status.OK).entity(tagDAO.createTag(tag)).build();
+                response = Response.status(Status.OK).entity(tagDao.createTag(tag)).build();
             } catch (CustomException cException) {
                 response = Response.status(Status.BAD_REQUEST).entity(cException.toString()).build();
             }
@@ -40,13 +40,13 @@ public class TagService {
     @PUT
     @Path("{id}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response UpdateTag(@PathParam("id") int id, Tag tag) {
+    public Response update(@PathParam("id") int id, Tag tag) {
         Response response;
         if (tag == null) {
             response = Response.status(Status.NO_CONTENT).build();
         } else {
             try {
-                response = Response.status(Status.OK).entity(tagDAO.updateTag(id, tag)).build();
+                response = Response.status(Status.OK).entity(tagDao.updateTag(id, tag)).build();
             } catch (CustomException cException) {
                 response = Response.status(Status.BAD_REQUEST).entity(cException.toString()).build();
             }
@@ -56,10 +56,10 @@ public class TagService {
 
     @DELETE
     @Path("{id}")
-    public Response deleteTag(@PathParam("id") int id) {
+    public Response delete(@PathParam("id") int id) {
         Response response;
         try {
-            response = Response.status(Status.OK).entity(tagDAO.deleteTag(id)).build();
+            response = Response.status(Status.OK).entity(tagDao.deleteTag(id)).build();
         } catch (CustomException cException){
             response = Response.status(Status.BAD_REQUEST).entity(cException.toString()).build();
         }
@@ -68,19 +68,19 @@ public class TagService {
 
     @GET
     @Path("/all")
-    public Response getAllTags() {
-        return Response.status(Status.OK).entity(tagDAO.findAllTags()).build();
+    public Response getAll() {
+        return Response.status(Status.OK).entity(tagDao.findAllTags()).build();
     }
 
     @GET
     @Path("{id}")
-    public Response getTag(@PathParam("id") int id) {
-        return Response.status(Status.OK).entity(tagDAO.findTagById(id)).build();
+    public Response get(@PathParam("id") int id) {
+        return Response.status(Status.OK).entity(tagDao.findTagById(id)).build();
     }
 
     @GET
     @Path("/activity/{id}")
     public Response getTabByActivity(@PathParam("id") int id_activity) {  
-        return Response.status(Status.OK).entity(tagDAO.findTagsByIdActivity(id_activity)).build();
+        return Response.status(Status.OK).entity(tagDao.findTagsByIdActivity(id_activity)).build();
     }
 }
