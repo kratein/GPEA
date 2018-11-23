@@ -16,9 +16,13 @@ import com.example.dao.UserDAO;
 import com.example.entities.User;
 import com.example.exception.CustomException;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 @Path("/user")
 @Produces(MediaType.APPLICATION_JSON)
 public class UserService {
+    private static final Log LOG = LogFactory.getLog(UserService.class);
     private final UserDAO userDAO = new UserDAO();
 
     @POST
@@ -38,10 +42,11 @@ public class UserService {
     }
 
     @POST
+    @Path("/connect")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response connect(User user) {
         Response response;
-        response = Response.status(Status.OK).entity(UserDAO.findUserByProvider(user)).build();
+        response = Response.status(Status.OK).entity(userDAO.findUserByProvider(user)).build();     
         return response;
     }
 

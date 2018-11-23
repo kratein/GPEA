@@ -57,7 +57,7 @@ class User extends Entities implements JsonSerializable
         $user->setZipCode($stdClass->zip_code);
         $user->setCity($stdClass->city);
         $user->setPhoto($stdClass->photo);
-        $user->setRole(RoleDao::get($stdClass->id_role));
+        $user->setRole($stdClass->id_role);
         return $user;
     }
 
@@ -179,7 +179,7 @@ class User extends Entities implements JsonSerializable
             'street' => $this->_street,
             'zip_code' => $this->_zip_code,
             'city' => $this->_city,
-            'role' => $this->_role->toArray(),
+            'role' => $this->_role,
             'photo' => $this->_photo
         );
         return $array;

@@ -1,6 +1,6 @@
 <?php
   require_once '../modele/api.php';
-
+  session_start(); 
   $tags = GetTagsObject();
 ?>
 <header>
@@ -18,6 +18,7 @@
            <?php 
      if (isset($_SESSION['userId'])){
       echo "<div class='login-container'>
+      <a href='".$domain."controller/disconnect.php'> <button type='button' class='btn btn-success'>Déconnexion</button></a>
       <div class='image_outer_container'>
         <div class='green_icon'></div>
         <div class='image_inner_container'>
@@ -28,7 +29,7 @@
      }else{
       echo '
       <div class="login-container">
-    <button type="button" class="btn btn-success" data-toggle="modal" data-backdrop="false" data-target="#loginModal">Login</button>
+    <button type="button" class="btn btn-success" data-toggle="modal" data-backdrop="false" data-target="#loginModal">Se connecter</button>
     </div>';
   }
   ?>
@@ -48,41 +49,25 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h3 class="modal-title">Please Sign In</h3>
+            <h3 class="modal-title">Connexion</h3>
             <button type="button" class="close" data-dismiss="modal"></button>
             <span>&times;</span>
           </div>
           <div class="modal-body">
-            <div class="form-group">
-              <input type="text" name="username" class="form-control" placeholder="Username">
+          <form action="<?php echo $domain ?>controller/controller_login.php" method="post">
+          <div class="form-group">
+            <input type="text" name="username" class="form-control" placeholder="Email">
             </div>
             <div class="form-group">
-              <input type="password" name="username" class="form-control" placeholder="Password">
-            </div>
+            <input type="password" name="password" class="form-control" placeholder="Mot de passe">
+          </div>
           </div>
           <div class="modal-footer">
             <div class="text-center"> 
-              <button type="submit" class="btn btn-success">Sign in</button>
+                <button type="submit" id="submit" class="btn btn-success">Se connecter</button>
+              </form>
             </div>
           </div>
-          <!--- Connect 
-          <div class="my-4">
-            <div class="container-fluid padding">
-              <div class="row text-center padding">
-                <div class="col-12">
-                <h2>Connect</h2>
-                </div>
-                <div class="col-12 social padding">
-                  <a href="#"><i class="fab fa-facebook"></i></a>
-                  <a href="#"><i class="fab fa-twitter"></i></a>
-                  <a href="#"><i class="fab fa-google-plus-g"></i></a>
-                  <a href="#"><i class="fab fa-instagram"></i></a>
-                  <a href="#"><i class="fab fa-youtube"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          -->  
           </div>
         </div>
       </div>
