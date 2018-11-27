@@ -50,35 +50,21 @@
           <div class="modal-header">
           <div role="tabpanel">
             <ul class="nav nav-tabs" role="tablist">
-              <li role="presentation" class="active"><a href="#login" role="tab" data-toggle="tab">Connexion</a></li>
-              <li role="presentation"><a href="#signUp" aria-controls="loginTab" role="tab" data-toggle="tab">Créer un compte</a></li>
+              <li role="presentation" class="nav-item"><a class="nav-link" href="#login" role="tab" data-toggle="tab">Connexion</a></li>
+              <li role="presentation" class="nav-item"><a class="nav-link" href="#signUp" aria-controls="loginTab" role="tab" data-toggle="tab">Créer un compte</a></li>
             </ul>
           </div>
-          <div class="modal-body">
-            <div id="resultat">
-            </div>
-          <form action="<?php echo $domain ?>controller/controller_login.php" method="post">
-          <div class="form-group">
+          <div class="tab-content modal-body">
+            <div class="tab-pane active" id="login">
+              <form action="<?php echo $domain ?>controller/controller_login.php" method="post">  
+              <div id="resultat">
+            </div> 
+              <div class="form-group">
             <input type="text" name="username" id="username" class="form-control" placeholder="Email">
             </div>
             <div class="form-group">
             <input type="password" name="password" id="password" class="form-control" placeholder="Mot de passe">
-          </div>
-          <!--
-            <button type="button" class="close" data-dismiss="modal"></button>
-            <span>&times;</span>
-          </div>
-          -->
-          <div class="tab-content modal-body">
-            <div class="tab-pane active" id="login">
-              <form action="<?php echo $domain ?>controller/controller_login.php" method="post">
-                <div class="form-group">
-                  <input type="text" name="username" class="form-control" placeholder="Email">
-                </div>
-                <div class="form-group">
-                  <input type="password" name="password" class="form-control" placeholder="Mot de passe">
-                </div>
-                
+          </div>             
                 <div class="modal-footer">
                   <div class="text-center"> 
                     <button type="submit" id="submit" class="btn btn-success">Se connecter</button>
@@ -109,7 +95,7 @@
                 </div>
                 <div class="modal-footer">
                   <div class="text-center"> 
-                    <button type="submit" id="submit" class="btn btn-success">Créer un compte</button>
+                    <button type="submit" id="submitSubscribe" class="btn btn-success">Créer un compte</button>
                   </div>
                 </div>
               </form>
