@@ -1,8 +1,8 @@
 <?php
-require_once ('../../webapi/src/models/entities/Tag.php');
-require_once ('../../webapi/src/models/entities/Hobby.php');
-require_once ('../../webapi/src/models/entities/Photo.php');
-require_once ('../../webapi/src/models/entities/User.php');
+require_once ('entities/Tag.php');
+require_once ('entities/Hobby.php');
+require_once ('entities/Photo.php');
+require_once ('entities/User.php');
 
 function GetTagsObject() {
     $json = file_get_contents("http://localhost:8080/api/tag/all");

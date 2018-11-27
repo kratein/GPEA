@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Ven 23 Novembre 2018 à 18:30
+-- Généré le :  Mar 27 Novembre 2018 à 15:34
 -- Version du serveur :  5.7.14
 -- Version de PHP :  7.0.10
 
@@ -32,7 +32,9 @@ CREATE TABLE `booking` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `n_people` int(11) NOT NULL,
-  `date` datetime NOT NULL,
+  `date` date NOT NULL,
+  `hour` int(11) NOT NULL,
+  `minute` int(11) NOT NULL,
   `activity_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -40,9 +42,10 @@ CREATE TABLE `booking` (
 -- Contenu de la table `booking`
 --
 
-INSERT INTO `booking` (`id`, `user_id`, `n_people`, `date`, `activity_id`) VALUES
-(1, 1, 2, '2018-11-23 00:00:00', 1),
-(2, 1, 5, '2018-11-23 00:00:00', 2);
+INSERT INTO `booking` (`id`, `user_id`, `n_people`, `date`, `hour`, `minute`, `activity_id`) VALUES
+(1, 1, 2, '2018-11-14', 0, 0, 1),
+(2, 1, 5, '2018-11-13', 0, 0, 2),
+(5, 1, 15, '2018-11-14', 10, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -268,7 +271,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT pour la table `has_tags`
 --

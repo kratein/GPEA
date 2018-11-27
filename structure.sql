@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Ven 23 Novembre 2018 à 18:31
+-- Généré le :  Mar 27 Novembre 2018 à 15:34
 -- Version du serveur :  5.7.14
 -- Version de PHP :  7.0.10
 
@@ -32,7 +32,9 @@ CREATE TABLE `booking` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `n_people` int(11) NOT NULL,
-  `date` datetime NOT NULL,
+  `date` date NOT NULL,
+  `hour` int(11) NOT NULL,
+  `minute` int(11) NOT NULL,
   `activity_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

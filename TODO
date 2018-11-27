@@ -5,6 +5,8 @@ Revoir la connexion en Ajax maintenant que la fenêtre semble bien reset les don
 Utililer les "alerts auto-close" de bootstrap. Peut-être voir avec l'attribut "visibility:" pour les afficher uniquement
 lors d'une connexion réussi ou un échec de connexion
 
+supprimer webapi -> attention aux dépendances
+
 
 
 

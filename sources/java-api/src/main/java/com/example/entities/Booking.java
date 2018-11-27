@@ -10,9 +10,39 @@ public class Booking extends Entities implements Serializable {
     private int user_id;
     private int n_people;
     private Date date;
+    private int hour;
+    private int minute;
     private int activity_id;
 
     public Booking(){}
+
+    /**
+     * @return the hour
+     */
+    public int getHour() {
+        return hour;
+    }
+
+    /**
+     * @param hour the hour to set
+     */
+    public void setHour(int hour) {
+        this.hour = hour;
+    }
+
+    /**
+     * @return the minute
+     */
+    public int getMinute() {
+        return minute;
+    }
+
+    /**
+     * @param minute the minute to set
+     */
+    public void setMinute(int minute) {
+        this.minute = minute;
+    }
 
     /**
      * @return the activity_id
@@ -28,11 +58,13 @@ public class Booking extends Entities implements Serializable {
         this.activity_id = activity_id;
     }
 
-    public Booking(int id, int user_id, int n_people, Date date, int activity_id) {
+    public Booking(int id, int user_id, int n_people, Date date, int hour, int minute, int activity_id) {
         this.id = id;
         this.user_id = user_id;
         this.n_people = n_people;
         this.date = date;
+        this.hour = hour;
+        this.minute = minute;
         this.activity_id = activity_id;
     }
 

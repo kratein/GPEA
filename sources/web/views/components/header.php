@@ -44,8 +44,7 @@
   </div>
 </nav>
 
-<!-- Modal Class -->
-    <div class="modal fade" role="dialog" tabindex="-1" id="loginModal">
+    <div class="modal fade" role="dialog" id="loginModal">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -55,6 +54,15 @@
               <li role="presentation"><a href="#signUp" aria-controls="loginTab" role="tab" data-toggle="tab">Créer un compte</a></li>
             </ul>
           </div>
+          <div class="modal-body">
+            <div id="resultat">
+            </div>
+          <form action="<?php echo $domain ?>controller/controller_login.php" method="post">
+          <div class="form-group">
+            <input type="text" name="username" id="username" class="form-control" placeholder="Email">
+            </div>
+            <div class="form-group">
+            <input type="password" name="password" id="password" class="form-control" placeholder="Mot de passe">
           </div>
           <!--
             <button type="button" class="close" data-dismiss="modal"></button>
@@ -111,13 +119,35 @@
           </div>
         </div>
       </div>
-      <script>
-      $('#loginModal .save').click(function (e) {
-    e.preventDefault();
-    addImage(5);
-    $('#loginModal').modal('hide');
-    //$(this).tab('show')
-    return false;
-})
-</script>
 </header>
+<script>
+ 
+ $(document).ready(function(){
+  
+     $("#submit").click(function(e){
+         e.preventDefault();
+  
+         $.post(
+             '<?php echo $domain ?>controller/controller_login.php', 
+             {
+                 username : $("#username").val(),  
+                 password : $("#password").val()
+             },
+  
+             function(data){
+                 if(data.trim() == "Success"){  
+                      $("#resultat").html("<div class='alert alert-success' role='alert'>Vous avez été connecté avec succès !</div>");
+                      location.reload();
+                 }
+                 else{
+                      $("#password").val("");
+                      $("#resultat").html("<div class='alert alert-warning' role='alert'>Erreur lors de la connexion</div>");
+                 }
+                 
+             },
+             'text'
+          );
+     });
+ });
+  
+ </script>

@@ -23,25 +23,27 @@ public class BookingDao extends AbstractDao<Booking> {
 
     @Override
     protected void getObjectFromResultSet(Map<Integer, Booking> map, ResultSet result) throws SQLException {
-        Booking booking = new Booking(result.getInt("id"), result.getInt("user_id"), result.getInt("n_people"), result.getDate("date"), result.getInt("activity_id"));
+        Booking booking = new Booking(result.getInt("id"), result.getInt("user_id"), result.getInt("n_people"),
+                result.getDate("date"), result.getInt("hour"), result.getInt("minute"), result.getInt("activity_id"));
         map.put(booking.getId(), booking);
     }
 
-	@Override
-	protected PreparedStatement getUpdateStatement(Booking booking, String request) throws SQLException {
+    @Override
+    protected PreparedStatement getUpdateStatement(Booking booking, String request) throws SQLException {
         PreparedStatement statement = null;
         statement = Database.getInstance().prepareStatement(request, PreparedStatement.RETURN_GENERATED_KEYS);
         statement.setInt(1, booking.getUser_id());
         statement.setInt(2, booking.getN_people());
         statement.setDate(3, booking.getDate());
-        statement.setInt(4, booking.getActivity_id());
+        statement.setInt(4, booking.getHour());
+        statement.setInt(5, booking.getMinute());
+        statement.setInt(6, booking.getActivity_id());
         return statement;
     }
-    
+
     public List<Booking> findAllBookings() {
         return getListFromRequest("1", null);
     }
-
 
     public Booking findBookingById(int id) {
         List<Booking> bookings = getListFromRequest("id=?", id);
@@ -52,7 +54,7 @@ public class BookingDao extends AbstractDao<Booking> {
         PreparedStatement statement = null;
         ResultSet result = null;
         if (booking == null) {
-            throw new CustomException(CustomException.ERROR_NULL,1);
+            throw new CustomException(CustomException.ERROR_NULL, 1);
         } else {
             boolean exists;
             try {
@@ -65,7 +67,7 @@ public class BookingDao extends AbstractDao<Booking> {
             } else {
                 try {
                     statement = getUpdateStatement(booking,
-                    "INSERT INTO booking (id, user_id, n_people, date, activity_id) VALUES (null,?,?,?,?)");
+                            "INSERT INTO booking (id, user_id, n_people, date, hour, minute, activity_id) VALUES (null,?,?,?,?,?,?)");
                     statement.executeUpdate();
                     result = statement.getGeneratedKeys();
                     if (result.next()) {
@@ -84,12 +86,12 @@ public class BookingDao extends AbstractDao<Booking> {
     public Booking updateBooking(int id, Booking booking) {
         PreparedStatement statement = null;
         if (booking == null) {
-            throw new CustomException(CustomException.ERROR_NULL,1);
+            throw new CustomException(CustomException.ERROR_NULL, 1);
         } else {
             if (this.findBookingById(id) != null) {
                 try {
-                    statement = getUpdateStatement(booking, 
-                    "UPDATE booking SET user_id=?, n_people=?, date=?, activity_id=? WHERE id=" + id);
+                    statement = getUpdateStatement(booking,
+                            "UPDATE booking SET user_id=?, n_people=?, date=?, hour=?, minute=?, activity_id=? WHERE id=" + id);
                     statement.executeUpdate();
                     booking.setId(id);
                 } catch (SQLException e) {
@@ -104,7 +106,7 @@ public class BookingDao extends AbstractDao<Booking> {
         return booking;
     }
 
-    public boolean deleteBooking (int id) {
+    public boolean deleteBooking(int id) {
         PreparedStatement statement = null;
         int deleted = 0;
         try {

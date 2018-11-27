@@ -10,10 +10,12 @@ session_start();
 		$_SESSION['userId'] = $user->getId();
 		$_SESSION['userEmail'] = $user->getEmail();
 		$_SESSION['photoPath'] = $user->getPhoto();
-		header ("Location: $_SERVER[HTTP_REFERER]" );
+		echo 'Success';
+		//header ("Location: $_SERVER[HTTP_REFERER]" );
 	}
 	else{
-		header ("Location: $_SERVER[HTTP_REFERER]" );
+		echo 'Failed';
+		//header ("Location: $_SERVER[HTTP_REFERER]" );
 	}
 ?>
 
