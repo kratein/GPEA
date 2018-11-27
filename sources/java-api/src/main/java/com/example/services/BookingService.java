@@ -77,4 +77,10 @@ public class BookingService implements BaseService<Booking>{
     public Response get(@PathParam("id") int id) {
         return Response.status(Status.OK).entity(bookingDao.findBookingById(id)).build();
     }
+
+    @GET
+    @Path("user/{id}")
+    public Response getByUser(@PathParam("id") int user_id) {
+        return Response.status(Status.OK).entity(bookingDao.findBookingByUser(user_id)).build();
+    }
 }

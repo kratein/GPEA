@@ -45,6 +45,10 @@ public class BookingDao extends AbstractDao<Booking> {
         return getListFromRequest("1", null);
     }
 
+    public List<Booking> findBookingByUser(int user_id) {
+        return getListFromRequest("user_id=?", user_id);
+    }
+
     public Booking findBookingById(int id) {
         List<Booking> bookings = getListFromRequest("id=?", id);
         return bookings != null && bookings.size() > 0 ? bookings.get(0) : null;

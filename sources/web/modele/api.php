@@ -3,6 +3,7 @@ require_once ('entities/Tag.php');
 require_once ('entities/Hobby.php');
 require_once ('entities/Photo.php');
 require_once ('entities/User.php');
+require_once ('entities/Booking.php');
 
 function GetTagsObject() {
     $json = file_get_contents("http://localhost:8080/api/tag/all");
@@ -47,6 +48,16 @@ function GetTagObject($id) {
     $json = json_decode($json);
     $tag = Tag::create($json);
     return $tag;
+}
+
+function GetBookingObjectByUser($user_id) {
+    $json = file_get_contents("http://localhost:8080/api/booking/user/$user_id");
+    $json = json_decode($json);
+    $bookings = array();
+    foreach ($json as $booking) {
+        $bookings[] = Booking::create($booking);
+    }
+    return $bookings;
 }
 
 function GetHobbiesObject() {

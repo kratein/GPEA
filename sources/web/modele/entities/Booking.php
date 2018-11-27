@@ -9,7 +9,10 @@ class Booking extends Entities implements JsonSerializable
 {
 
 	private $_user_id;
-	private $_n_people;
+    private $_n_people;
+    private $_date;
+    private $_hour;
+    private $_minute;
 	private $_activity_id;
 	
 	public function __construct()
@@ -23,9 +26,13 @@ class Booking extends Entities implements JsonSerializable
             return null;
         }
         $booking = new Booking();
-        $booking->setN_People(2);
-        $booking->setUser_Id(1);
-        $booking->setActivity_Id(1);
+        $booking->setId($stdClass->id);
+        $booking->setUser_Id($stdClass->user_id);
+        $booking->setN_People($stdClass->n_people);  
+        $booking->setDate($stdClass->date);
+        $booking->setHour($stdClass->hour);
+        $booking->setMinute($stdClass->minute);      
+        $booking->setActivity_Id($stdClass->activity_id);
         return $booking;
     }
 
@@ -63,9 +70,12 @@ class Booking extends Entities implements JsonSerializable
     {
         $array = array(
             'id' => $this->_id,
-            'npeople' => $this->_n_people,
-            'user' => $this->_user->toArray(),
-            'hobby' => $this->_hobby->toArray()
+            'user_id' => $this->_user_id,
+            'n_people' => $this->_n_people,
+            'date' => $this->date,
+            'hour' => $this->hour,
+            'minute' => $this->minute,
+            'activity_id' => $this->_activity_id
         );
         return $array;
     }
@@ -83,6 +93,46 @@ class Booking extends Entities implements JsonSerializable
 
 
 
+
+    /**
+     * Get the value of _hour
+     */ 
+    public function getHour()
+    {
+        return $this->_hour;
+    }
+
+    /**
+     * Set the value of _hour
+     *
+     * @return  self
+     */ 
+    public function setHour($_hour)
+    {
+        $this->_hour = $_hour;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of _minute
+     */ 
+    public function getMinute()
+    {
+        return $this->_minute;
+    }
+
+    /**
+     * Set the value of _minute
+     *
+     * @return  self
+     */ 
+    public function setMinute($_minute)
+    {
+        $this->_minute = $_minute;
+
+        return $this;
+    }
 }
 
 
