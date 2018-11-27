@@ -45,30 +45,79 @@
 </nav>
 
 <!-- Modal Class -->
-    <div class="modal fade" role="dialog" id="loginModal">
+    <div class="modal fade" role="dialog" tabindex="-1" id="loginModal">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h3 class="modal-title">Connexion</h3>
+          <div role="tabpanel">
+            <ul class="nav nav-tabs" role="tablist">
+              <li role="presentation" class="active"><a href="#login" role="tab" data-toggle="tab">Connexion</a></li>
+              <li role="presentation"><a href="#signUp" aria-controls="loginTab" role="tab" data-toggle="tab">Créer un compte</a></li>
+            </ul>
+          </div>
+          </div>
+          <!--
             <button type="button" class="close" data-dismiss="modal"></button>
             <span>&times;</span>
           </div>
-          <div class="modal-body">
-          <form action="<?php echo $domain ?>controller/controller_login.php" method="post">
-          <div class="form-group">
-            <input type="text" name="username" class="form-control" placeholder="Email">
-            </div>
-            <div class="form-group">
-            <input type="password" name="password" class="form-control" placeholder="Mot de passe">
-          </div>
-          </div>
-          <div class="modal-footer">
-            <div class="text-center"> 
-                <button type="submit" id="submit" class="btn btn-success">Se connecter</button>
+          -->
+          <div class="tab-content modal-body">
+            <div class="tab-pane active" id="login">
+              <form action="<?php echo $domain ?>controller/controller_login.php" method="post">
+                <div class="form-group">
+                  <input type="text" name="username" class="form-control" placeholder="Email">
+                </div>
+                <div class="form-group">
+                  <input type="password" name="password" class="form-control" placeholder="Mot de passe">
+                </div>
+                
+                <div class="modal-footer">
+                  <div class="text-center"> 
+                    <button type="submit" id="submit" class="btn btn-success">Se connecter</button>
+                  </div>
+                </div>
               </form>
-            </div>
+              </div>
+              <div class="tab-pane" id="signUp">        
+              <form action="<?php echo $domain ?>controller/controller_signUp.php" method="post">
+                
+              <div class="form-group">
+                  <input type="text" name="firstName" class="form-control" placeholder="Prénom">
+                </div>
+                <div class="form-group">
+                  <input type="text" name="lastName" class="form-control" placeholder="Nom">
+                </div>
+                <div class="form-group">
+                  <input type="text" name="username" class="form-control" placeholder="Email">
+                </div>
+                <div class="form-group">
+                  <input type="password" name="password" class="form-control" placeholder="Mot de passe">
+                </div>
+                <div class="form-group">
+                  <input type="password" name="passwordConfirm" class="form-control" placeholder="Confirmez le mot de passe">
+                </div>
+                <div class="form-group">
+                  <input type="date" class="form-control" placeholder="Date"/>
+                </div>
+                <div class="modal-footer">
+                  <div class="text-center"> 
+                    <button type="submit" id="submit" class="btn btn-success">Créer un compte</button>
+                  </div>
+                </div>
+              </form>
+              </div>
           </div>
+        </div>
           </div>
         </div>
       </div>
+      <script>
+      $('#loginModal .save').click(function (e) {
+    e.preventDefault();
+    addImage(5);
+    $('#loginModal').modal('hide');
+    //$(this).tab('show')
+    return false;
+})
+</script>
 </header>

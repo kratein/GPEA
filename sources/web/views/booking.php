@@ -10,27 +10,32 @@
   		}
   ?>
   <body>
-  	<div class="container-fluid bookingForm">
+  	<div class="container-fluid bookingForm mx-auto">
 		<div class="row align-items-center">
 		<!-- Item 1 -->
 			<!-- Material form register -->
+			<div class="col-12">
 			<div class="card"> 
   				    <h5 class="card-header info-color white-text text-center py-4">
-			        <strong>Réserver cette activité</strong>
+					<strong>Réserver cette activité : <?php
+					echo $hobby->getLabel();
+					?>
+					</strong>
 			    </h5>
 			    <br>
-  	<div class='row'>
-    <div class='col-md-12'>
+	  <div class="row justify-content-center float-left">
+
+			<div class="col-md-4">
           <?php 
-                echo "<img src='".$domain.$photos[0]->getPath()."' class='img-fluid'>";    
+                echo "<img src='".$domain.$photos[0]->getPath()."' class='img-fluid rounded '>";    
             ?>
 	</div>
-</div>
+	<div class="col-10 col-sm-10 col-md-10 col-lg-8 col-xl-8">
 			    <!--Card content-->
-			    <div class="card-body px-lg-5 pt-0">
+			    <div class="card-body">
 
 			        <!-- Form -->
-			        <form class="text-center" style="color: #757575;">
+			        <form class="" style="color: #757575;">
 
 			            <div class="form-row">
 			                <div class="col">
@@ -51,26 +56,63 @@
 			            <div class="md-form mt-0">
 			                <input type="email" class="form-control" placeholder="E-mail">
 			            </div><br>
-			            <!-- Password -->
-			            <div class="md-form">
-			                <input type="password" class="form-control" placeholder="Mot de Passe">
-			            </div><br>
+						<div class="form-group"> 
+	<input type="range" id="nbPeopleRange" class="form-control-range slider"  min="0" max="<?php echo $hobby->getOlder(); ?>" value="<?php echo $hobby->getOlder()/2; ?>" id="formControlRange">
+	<label for="formControlRange">Nombre de participants: <span id="nbPeople"></span></label>
+</div>
+				<script>
+				var slider = document.getElementById("nbPeopleRange");
+				var outputRange = document.getElementById("nbPeople");
 
-			            <!-- Phone number -->
-			            <div class="md-form">
-			                <input type="date" class="form-control" placeholder="Date">
-			            </div><br>
+				var outputPrice = document.getElementById("nbPeople");
+				outputRange.innerHTML = slider.value;
 
+				slider.oninput = function() {
+					outputRange.innerHTML = this.value;
+				}
+				</script>
+			            <!-- Date-->
+			            <div class="md-form container">
+							<div class="row">
+								<div class="col">
+						<label>Date</label>	
+
+						</div>					
+						<div class="col">
+						<input type="date" class="form-control datepicker" placeholder="Date"/>
+							
+						</div>
+						<div class="col">
+						<select class="form-control" id="hours">
+								<?php foreach(range(8,17) as $i){
+									echo "<option value=$i>$i h</option>";
+								}
+								?>
+								</select>
+							</div>
+							<div class="col">
+							<select class="form-control" id="hours">
+								<option value="0">00</option>
+								<option value="30">30</option>
+								</select>
+							</div>
+							</div><br>
+									<div>
 			            <!-- Sign up button -->
 			            <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Reserver</button>
 
 	       
 			        </form>
 			        <!-- Form -->
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	</div>
+</div>
+</div>
+</div>
 </div>
 <!-- Material form register -->
 
