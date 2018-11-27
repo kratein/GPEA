@@ -1,0 +1,27 @@
+API revoir le format de booking date pour qu'il prenne en compte l'heure
+
+Revoir la connexion en Ajax maintenant que la fenêtre semble bien reset les données. 
+
+Utililer les "alerts auto-close" de bootstrap. Peut-être voir avec l'attribut "visibility:" pour les afficher uniquement
+lors d'une connexion réussi ou un échec de connexion
+
+
+
+
+
+
+
+Rechercher pour séparer le code de la fenêtre de connexion du fichier header.php
+
+Revoir la page de réservation : 
+    ->le formulaire n'est pas bon 
+    ->enlever la colonne vide
+    ->remettre en forme la photo
+    ->ajouter le titre de l'activité
+
+Réfléchir à la suite d'événement pour la réservation. 2 cas de base.
+C'est pas du tout du technique que je veux mais la suite des événements. 
+Peut-être jouer avec des fenêtres modales 
+ -> déjà connecter
+ -> pas connecter -> inscription 
+                  -> connexion

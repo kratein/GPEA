@@ -1,35 +1,12 @@
 <html>
   <?php require_once 'components/head.php'; ?>
 <body>
-      <?php require_once 'components/header.php'; 
-
-
-  require_once ('../../webapi/src/models/entities/Booking.php');
-    require_once ('../../webapi/src/models/entities/User.php');
-  //require_once ('../../webapi/src/models/DAO/BookingDao.php');
-  //require_once('../modele/api.php');
-  if (isset($_POST['register'])){
-  	
-
-  	$last_name = !empty($_POST['last_name']) ? trim($_POST['lsat_name']) : null;
-  	$first_name = !empty($_POST['first_name']) ? trim($_POST['first_name']) : null;
-  	$password = !empty($_POST['password']) ? trim($_POST['password']) : null;
-  	$city = !empty($_POST['city']) ? trim($_POST['city']) : null;
-  	$zipCode = !empty($_POST['zipCode']) ? trim($_POST['zipCode']) : null;
-  	$email = !empty($_POST['email']) ? trim($_POST['email']) : null;
-  	$password = !empty($_POST['password']) ? trim($_POST['password']) : null;
-  	$array = array(
-  		'n_people' => 2, 
-  		'id_user' => 1, 
-  		'id_hobby_activity' => 1
-  	);
-  }
-  	//addBooking(Booking::Create($array));
+	  <?php require_once 'components/header.php'; 
           if (!empty($_GET['id'])) 
         {
             $id = $_GET['id'];
-            $photos = GetPhotosActivity($id);
             $hobby = GetHobbyObject($id);
+            $photos = GetPhotosActivityObject($hobby->getId());
   		}
   ?>
   <body>
@@ -49,9 +26,6 @@
             ?>
 	</div>
 </div>
-
-
-
 			    <!--Card content-->
 			    <div class="card-body px-lg-5 pt-0">
 

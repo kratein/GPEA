@@ -4,7 +4,6 @@
     <?php 
         require_once 'components/header.php'; 
         require_once '../controller/controller_activities.php';
-        //$activities = GetHobbiesObject();
         if(!empty($_GET['page']))
         {
           $page = $_GET['page'];
