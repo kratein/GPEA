@@ -78,4 +78,10 @@ public class PhotoService implements BaseService<Photo>{
     public Response get(@PathParam("id") int id) {
         return Response.status(Status.OK).entity(photoDao.findPhotoById(id)).build();
     }
+
+    @GET
+    @Path("activity/{id}")
+    public Response getByActivityId(@PathParam("id") int activity_id) {
+        return Response.status(Status.OK).entity(photoDao.findPhotoByActivityId(activity_id)).build();
+    }
 }

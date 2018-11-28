@@ -49,6 +49,10 @@ public class PhotoDao extends AbstractDao<Photo> {
         return photos != null && photos.size() > 0 ? photos.get(0) : null;
     }
 
+    public List<Photo> findPhotoByActivityId(int user_id) {
+        return getListFromRequest("id_hobbyactivity=?", user_id);
+    }
+
     public Photo createPhoto(Photo photo) {
         PreparedStatement statement = null;
         ResultSet result = null;

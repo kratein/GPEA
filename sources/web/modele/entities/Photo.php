@@ -45,7 +45,7 @@ class Photo extends Entities implements JsonSerializable
         $photo->setTitle($stdClass->title);
         $photo->setPath($stdClass->path);
         $photo->setDescription($stdClass->description);
-        $photo->setHobby($stdClass->id_hobbyactivity);
+        $photo->setHobby($stdClass->id_activity);
         return $photo;
     }
 

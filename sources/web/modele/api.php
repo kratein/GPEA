@@ -77,7 +77,7 @@ function GetHobbyObject($id) {
     return $hobby;
 }
 
-function GetTagsActivityObject($id) {
+/*function GetTagsActivityObject($id) {
     $json = file_get_contents("http://localhost/GPEA/sources/webapi/src/models/api.php?name=tag&activity=$id");
     $json = json_decode($json); 
     $tags = array();
@@ -85,13 +85,13 @@ function GetTagsActivityObject($id) {
         $tags[] = Tag::create($tag);
     }
     return $tags;
-}
+}*/
 
 function GetPhotosActivityObject($id) {
-    $json = file_get_contents("http://localhost/GPEA/sources/webapi/src/models/api.php?name=photo&activity=$id");
+    $json = file_get_contents("http://localhost:8080/api/photo/activity/$id");
     $json = json_decode($json); 
     $photos = array();
-    foreach ($json->data as $photo) {
+    foreach ($json as $photo) {
         $photos[] = Photo::create($photo);
     }
     return $photos;
