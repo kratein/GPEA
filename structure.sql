@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 27 Novembre 2018 à 15:34
+-- Généré le :  Mar 04 Décembre 2018 à 14:41
 -- Version du serveur :  5.7.14
 -- Version de PHP :  7.0.10
 
@@ -66,7 +66,8 @@ CREATE TABLE `hobbyactivity` (
   `city` text,
   `cover` text NOT NULL,
   `slogan` varchar(150) NOT NULL,
-  `price` decimal(10,0) NOT NULL
+  `price` decimal(10,0) NOT NULL,
+  `max_n_people` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -127,7 +128,7 @@ CREATE TABLE `tag` (
 
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
-  `name` text,
+  `lastName` text,
   `firstname` text,
   `birthday` date DEFAULT NULL,
   `email` text,

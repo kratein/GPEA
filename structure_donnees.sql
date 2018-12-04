@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 27 Novembre 2018 à 15:34
+-- Généré le :  Mar 04 Décembre 2018 à 14:41
 -- Version du serveur :  5.7.14
 -- Version de PHP :  7.0.10
 
@@ -86,17 +86,18 @@ CREATE TABLE `hobbyactivity` (
   `city` text,
   `cover` text NOT NULL,
   `slogan` varchar(150) NOT NULL,
-  `price` decimal(10,0) NOT NULL
+  `price` decimal(10,0) NOT NULL,
+  `max_n_people` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `hobbyactivity`
 --
 
-INSERT INTO `hobbyactivity` (`id`, `label`, `description`, `web_site`, `minimum_older`, `street`, `zip_code`, `city`, `cover`, `slogan`, `price`) VALUES
-(1, 'Paintball', '\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc congue sapien in nulla pharetra convallis. Integer et erat tellus. Duis in erat pulvinar, vulputate massa ac, semper mauris. Aenean mauris elit, pellentesque accumsan nibh non, suscipit pellentesque nibh. Praesent nec tortor eget nulla gravida egestas. Proin cursus turpis ac lacus accumsan, eu dictum arcu elementum. Nam elementum ligula elit. Maecenas nec iaculis quam. Fusce ut nisi eu sem posuere egestas ac id metus. Integer posuere.', 'www.paintball.fr', 14, '42 rue lorem ipsum', '75000', 'Lorem Ipsum', 'ressources/img/background2.png', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin molestie odio in euismod dapibus. Duis cursus ipsum at sem ultricies, sed lobortis sed.', '0'),
-(2, 'Karting', '\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc congue sapien in nulla pharetra convallis. Integer et erat tellus. Duis in erat pulvinar, vulputate massa ac, semper mauris. Aenean mauris elit, pellentesque accumsan nibh non, suscipit pellentesque nibh. Praesent nec tortor eget nulla gravida egestas. Proin cursus turpis ac lacus accumsan, eu dictum arcu elementum. Nam elementum ligula elit. Maecenas nec iaculis quam. Fusce ut nisi eu sem posuere egestas ac id metus. Integer posuere.', 'www.karting.fr', 16, '1 rue lorem ispum', '75000', 'Lorem Ipsum', 'ressources/img/background3.png', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin molestie odio in euismod dapibus. Duis cursus ipsum at sem ultricies, sed lobortis sed.', '0'),
-(3, 'Bowling', '\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc congue sapien in nulla pharetra convallis. Integer et erat tellus. Duis in erat pulvinar, vulputate massa ac, semper mauris. Aenean mauris elit, pellentesque accumsan nibh non, suscipit pellentesque nibh. Praesent nec tortor eget nulla gravida egestas. Proin cursus turpis ac lacus accumsan, eu dictum arcu elementum. Nam elementum ligula elit. Maecenas nec iaculis quam. Fusce ut nisi eu sem posuere egestas ac id metus. Integer posuere.', 'www.bowling.fr', 5, '3 rue lorem ipsum', '75000', 'Lorem Ipsum', 'ressources/img/banc-bowling.png', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin molestie odio in euismod dapibus. Duis cursus ipsum at sem ultricies, sed lobortis sed.', '0');
+INSERT INTO `hobbyactivity` (`id`, `label`, `description`, `web_site`, `minimum_older`, `street`, `zip_code`, `city`, `cover`, `slogan`, `price`, `max_n_people`) VALUES
+(1, 'Paintball', '\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc congue sapien in nulla pharetra convallis. Integer et erat tellus. Duis in erat pulvinar, vulputate massa ac, semper mauris. Aenean mauris elit, pellentesque accumsan nibh non, suscipit pellentesque nibh. Praesent nec tortor eget nulla gravida egestas. Proin cursus turpis ac lacus accumsan, eu dictum arcu elementum. Nam elementum ligula elit. Maecenas nec iaculis quam. Fusce ut nisi eu sem posuere egestas ac id metus. Integer posuere.', 'www.paintball.fr', 14, '42 rue lorem ipsum', '75000', 'Lorem Ipsum', 'ressources/img/background2.png', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin molestie odio in euismod dapibus. Duis cursus ipsum at sem ultricies, sed lobortis sed.', '0', 0),
+(2, 'Karting', '\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc congue sapien in nulla pharetra convallis. Integer et erat tellus. Duis in erat pulvinar, vulputate massa ac, semper mauris. Aenean mauris elit, pellentesque accumsan nibh non, suscipit pellentesque nibh. Praesent nec tortor eget nulla gravida egestas. Proin cursus turpis ac lacus accumsan, eu dictum arcu elementum. Nam elementum ligula elit. Maecenas nec iaculis quam. Fusce ut nisi eu sem posuere egestas ac id metus. Integer posuere.', 'www.karting.fr', 16, '1 rue lorem ispum', '75000', 'Lorem Ipsum', 'ressources/img/background3.png', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin molestie odio in euismod dapibus. Duis cursus ipsum at sem ultricies, sed lobortis sed.', '0', 0),
+(3, 'Bowling', '\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc congue sapien in nulla pharetra convallis. Integer et erat tellus. Duis in erat pulvinar, vulputate massa ac, semper mauris. Aenean mauris elit, pellentesque accumsan nibh non, suscipit pellentesque nibh. Praesent nec tortor eget nulla gravida egestas. Proin cursus turpis ac lacus accumsan, eu dictum arcu elementum. Nam elementum ligula elit. Maecenas nec iaculis quam. Fusce ut nisi eu sem posuere egestas ac id metus. Integer posuere.', 'www.bowling.fr', 5, '3 rue lorem ipsum', '75000', 'Lorem Ipsum', 'ressources/img/banc-bowling.png', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin molestie odio in euismod dapibus. Duis cursus ipsum at sem ultricies, sed lobortis sed.', '0', 0);
 
 -- --------------------------------------------------------
 
@@ -185,7 +186,7 @@ INSERT INTO `tag` (`id`, `label`) VALUES
 
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
-  `name` text,
+  `lastName` text,
   `firstname` text,
   `birthday` date DEFAULT NULL,
   `email` text,
@@ -201,7 +202,7 @@ CREATE TABLE `user` (
 -- Contenu de la table `user`
 --
 
-INSERT INTO `user` (`id`, `name`, `firstname`, `birthday`, `email`, `password`, `street`, `zip_code`, `city`, `id_role`, `photo`) VALUES
+INSERT INTO `user` (`id`, `lastName`, `firstname`, `birthday`, `email`, `password`, `street`, `zip_code`, `city`, `id_role`, `photo`) VALUES
 (1, 'bonin', 'dylan', '1993-11-01', 'dylan.bonin@free.fr', 'password', '4 rue pasteur', 91260, 'juvisy-sur-orge', 1, NULL);
 
 --
