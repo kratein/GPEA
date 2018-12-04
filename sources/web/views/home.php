@@ -68,7 +68,7 @@
 <!--- Cards -->
 <div class="container-fluid padding">
 	<div class="row padding">
-		<div class="col-md-2 col-sm-4">
+		<div class="col-md-3 col-sm-6">
 			<div class="card">
 				<img class="card-img-top" src="ressources/img/benjamin.png">
 				<a href="#" data-toggle="collapse" class="btn btn-outline-secondary" data-target="#profilBenjamin">Profil</a>
@@ -80,7 +80,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-2 col-sm-4">
+		<div class="col-md-3 col-sm-6">
 			<div class="card">
 				<img class="card-img-top" src="ressources/img/dylan.png">
 				<a href="#" data-toggle="collapse" class="btn btn-outline-secondary" data-target="#profilDylan">Profil</a>
@@ -92,7 +92,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-2 col-sm-4">
+		<div class="col-md-3 col-sm-6">
 			<div class="card">
 			<img class="card-img-top" src="ressources/img/youri.png">
 			<a href="#" data-toggle="collapse" class="btn btn-outline-secondary" data-target="#profilYouri">Profil</a>			
@@ -104,7 +104,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-2 col-sm-4">
+		<div class="col-md-3 col-sm-6">
 			<div class="card">
 				<img class="card-img-top" src="ressources/img/madhi.png">
 				<a href="#" data-toggle="collapse" class="btn btn-outline-secondary" data-target="#profilMadhi">Profil</a>			
@@ -112,30 +112,6 @@
 					<div class="card-body">
 						<h4 class="card-title">Mahdi</h4>
 						<p class="card-text">Mahdi est un developeur primordial pour l'équipe tant par sa capacite de jugement, de dissernement que sa joie de vivre.</p>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-2 col-sm-4">
-			<div class="card">
-			<img class="card-img-top" src="ressources/img/burak.png">
-			<a href="#" data-toggle="collapse" class="btn btn-outline-secondary" data-target="#profilBurak">Profil</a>			
-				<div id="profilBurak" class="collapse">
-					<div class="card-body">
-						<h4 class="card-title">Burak</h4>
-						<p class="card-text">Burak est le fardeau de l'équipe, toujours à demander de l'aide, la définition d'un newbie. Burak parle dans un langage obscure que nous n'avons pas encore réussi a dechiffrer au jour d'aujourd'hui. On l'aime bien quand meme. </p>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-2 col-sm-4">
-			<div class="card">
-				<img class="card-img-top" src="ressources/img/maxime.png">
-				<a href="#" data-toggle="collapse" class="btn btn-outline-secondary" data-target="#profilMaxime">Profil</a>			
-				<div id="profilMaxime" class="collapse">			
-					<div class="card-body">
-						<h4 class="card-title">Maxime</h4>
-						<p class="card-text">Maxime, notre sportif. A lui seul il rassemble tout l'energie de l'equipe, je ne l'ai jamais vu dormir ni meme faire une sieste, une endurance hors du commun.</p>
 					</div>
 				</div>
 			</div>
@@ -164,5 +140,4 @@
 </div>  
   <?php require_once 'components/footer.php'; ?>
   </body>
-  <?php require_once 'components/footer.php'; ?>
 </html>

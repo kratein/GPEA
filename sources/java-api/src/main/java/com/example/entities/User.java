@@ -5,7 +5,7 @@ import java.sql.Date;
 
 public class User extends Entities implements Serializable{
     private static final long serialVersionUID = 1L;
-    private String name;
+    private String lastname;
     private String firstname;
     private Date birthday;
     private String email;
@@ -16,9 +16,10 @@ public class User extends Entities implements Serializable{
     private int id_role;
     private String photo;
 
-    public User(int id, String name, String firstname, Date birthday, String email, String password, String street, int zip_code, String city, int id_role, String photo) {
+    public User(int id, String lastname, String firstname, Date birthday, String email, 
+    String password, String street, int zip_code, String city, int id_role, String photo) {
         this.id = id;
-        this.name = name;
+        this.lastname = lastname;
         this.firstname = firstname;
         this.birthday = birthday;
         this.email = email;
@@ -34,12 +35,12 @@ public class User extends Entities implements Serializable{
     }
 
 
-    public String getName() {
-        return this.name;
+    public String getLastName() {
+        return this.lastname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setLastName(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getFirstname() {
@@ -117,7 +118,7 @@ public class User extends Entities implements Serializable{
     @Override
     public String toString() {
         return "{" +
-            " name='" + getName() + "'" +
+            " lastname='" + getLastName() + "'" +
             ", firstname='" + getFirstname() + "'" +
             ", birthday='" + getBirthday() + "'" +
             ", email='" + getEmail() + "'" +

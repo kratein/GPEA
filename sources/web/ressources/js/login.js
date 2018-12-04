@@ -9,7 +9,6 @@ $(document).ready(function () {
                 username: $("#username").val(),
                 password: $("#password").val()
             },
-
             function (data) {
                 if (data.trim() == "Success") {
                     $("#resultat").html("<div class='alert alert-success' role='alert'>Vous avez été connecté avec succès !</div>");
@@ -17,8 +16,8 @@ $(document).ready(function () {
                 } else {
                     $("#password").val("");
                     $("#resultat").html("<div class='alert alert-warning' role='alert'>Erreur lors de la connexion</div>");
+                    location.reload();
                 }
-
             },
             'text'
         );

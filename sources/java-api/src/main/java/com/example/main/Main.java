@@ -53,6 +53,7 @@ public class Main{
         BasicConfigurator.configure();
         System.out.println(String.format("Jersey app started with WADL available at "
                 + "%sapplication.wadl\nHit enter to stop it...", BASE_URI));
+                Thread.dumpStack();
         System.in.read();
         server.shutdown();
     }

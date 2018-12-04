@@ -23,7 +23,7 @@ public class UserDao extends AbstractDao<User> {
 
     @Override
     protected void getObjectFromResultSet(Map<Integer, User> map, ResultSet result) throws SQLException {
-        User user = new User(result.getInt("id"), result.getString("name"),
+        User user = new User(result.getInt("id"), result.getString("lastname"),
                 result.getString("firstname"), result.getDate("birthday"), result.getString("email"),
                 result.getString("password"), result.getString("street"), result.getInt("zip_code"),
                 result.getString("city"), result.getInt("id_role"), result.getString("photo"));
@@ -34,7 +34,7 @@ public class UserDao extends AbstractDao<User> {
 	protected PreparedStatement getUpdateStatement(User user, String request) throws SQLException {
         PreparedStatement statement = null;
         statement = Database.getInstance().prepareStatement(request, PreparedStatement.RETURN_GENERATED_KEYS);
-        statement.setString(1, user.getName());
+        statement.setString(1, user.getLastName());
         statement.setString(2, user.getFirstname());
         statement.setDate(3, user.getBirthday());
         statement.setString(4, user.getEmail());
@@ -87,7 +87,7 @@ public class UserDao extends AbstractDao<User> {
             } else {
                 try {
                     statement = getUpdateStatement(user,
-                    "INSERT INTO user (id, name, firstname, birthday, email, password, street, zip_code, city, id_role, photo) VALUES (null,?,?,?,?,?,?,?,?,?,?)");
+                    "INSERT INTO user (id, lastname, firstname, birthday, email, password, street, zip_code, city, id_role, photo) VALUES (null,?,?,?,?,?,?,?,?,?,?)");
                     statement.executeUpdate();
                     result = statement.getGeneratedKeys();
                     if (result.next()) {
@@ -111,7 +111,7 @@ public class UserDao extends AbstractDao<User> {
             if (this.findUserById(id) != null) {
                 try {
                     statement = getUpdateStatement(user, 
-                    "UPDATE user SET name=?, firstname=?, birthday=?, email=?, password=?, street=?, zip_code=?, city=?, id_role=?, photo=? WHERE id=" + id);
+                    "UPDATE user SET lastname=?, firstname=?, birthday=?, email=?, password=?, street=?, zip_code=?, city=?, id_role=?, photo=? WHERE id=" + id);
                     statement.executeUpdate();
                     user.setId(id);
                 } catch (SQLException e) {

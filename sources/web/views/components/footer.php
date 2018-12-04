@@ -1,6 +1,6 @@
 <!--- Footer -->
 <footer>
-<div class="container-fluid padding">
+<div class="container-fluid  sticky-bottom">
 	<div class="row text-center">
 		<div class="col-md-4">
 		<a class="logo" href="#"><i class="fas fa-quidditch"></i></a>

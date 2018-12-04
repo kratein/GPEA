@@ -109,4 +109,9 @@ public class Booking extends Entities implements Serializable {
     public void setUser_id(int user_id) {
         this.user_id = user_id;
     }
+
+    @Overrride
+    public String toString(){
+        return id + " " + date + " " + n_people;
+    }
 }

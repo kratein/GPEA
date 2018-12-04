@@ -16,8 +16,8 @@ require_once('Entities.php');
 class User extends Entities implements JsonSerializable
 {
 
-    private $_name;
     private $_firstName;
+    private $_lastName;
     private $_birthday;
     private $_email;
     private $_password;
@@ -48,8 +48,8 @@ class User extends Entities implements JsonSerializable
         }
         $user = new User();
         $user->setId($stdClass->id);
-        $user->setName($stdClass->name);
         $user->setFirstName($stdClass->firstname);
+        $user->setLastName($stdClass->lastname);
         $user->setBirthday($stdClass->birthday);
         $user->setEmail($stdClass->email);
         $user->setPassword($stdClass->password);
@@ -61,14 +61,14 @@ class User extends Entities implements JsonSerializable
         return $user;
     }
 
-    public function getName()
-    {
-        return $this->_name;
-    }
-
     public function getFirstName()
     {
         return $this->_firstName;
+    }
+
+    public function getLastName()
+    {
+        return $this->_lastName;
     }
 
     public function getBirthday()
@@ -111,14 +111,14 @@ class User extends Entities implements JsonSerializable
         return $this->_role;
     }
 
-    public function setName($name)
-    {
-        $this->_name = $name;
-    }
-
     public function setFirstName($firstName)
     {
         $this->_firstName = $firstName;
+    }
+
+    public function setLastName($lastName)
+    {
+        $this->_lastName = $lastName;
     }
 
     public function setBirthday($birthday)
@@ -171,7 +171,6 @@ class User extends Entities implements JsonSerializable
     {
         $array = array(
             'id' => $this->_id,
-            'name' => $this->_name,
             'firstName' => $this->_firstName,
             'birthday' => $this->_birthday,
             'email' => $this->_email,
