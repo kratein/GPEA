@@ -28,6 +28,7 @@ class Hobby extends Entities implements JsonSerializable
     private $_cover;
     private $_slogan;
     private $_price;
+    private $_max_n_people;
 
     /**
      * Default constructor empty
@@ -62,6 +63,7 @@ class Hobby extends Entities implements JsonSerializable
         $hobby->setCover($stdClass->cover);
         $hobby->setSlogan($stdClass->slogan);
         $hobby->setPrice($stdClass->price);
+        $hobby->setMax_n_people($stdClass->max_n_people);
         return $hobby;
     }
 
@@ -181,7 +183,8 @@ class Hobby extends Entities implements JsonSerializable
             'cover' => $this->_cover,
             'tags' => $tags,
             'slogan' => $this->_slogan,
-            'price' => $this->_price
+            'price' => $this->_price,
+            'max_n_people' => $this->_max_n_people
         );
         return $array;
     }
@@ -249,6 +252,26 @@ class Hobby extends Entities implements JsonSerializable
     public function setPrice($_price)
     {
         $this->_price = $_price;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of _max_n_people
+     */ 
+    public function getMax_n_people()
+    {
+        return $this->_max_n_people;
+    }
+
+    /**
+     * Set the value of _max_n_people
+     *
+     * @return  self
+     */ 
+    public function setMax_n_people($_max_n_people)
+    {
+        $this->_max_n_people = $_max_n_people;
 
         return $this;
     }

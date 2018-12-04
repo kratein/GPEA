@@ -28,7 +28,7 @@ public class ActivityDao extends AbstractDao<Activity> {
         Activity activity = new Activity(result.getInt("id"), result.getString("label"),
                 result.getString("description"), result.getString("web_site"), result.getInt("minimum_older"),
                 result.getString("street"), result.getString("zip_code"), result.getString("city"),
-                result.getString("cover"), result.getString("slogan"), result.getDouble("price"));
+                result.getString("cover"), result.getString("slogan"), result.getDouble("price"), result.getInt("max_n_people"));
         map.put(activity.getId(), activity);
     }
 

@@ -205,6 +205,18 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `lastName`, `firstname`, `birthday`, `email`, `password`, `street`, `zip_code`, `city`, `id_role`, `photo`) VALUES
 (1, 'bonin', 'dylan', '1993-11-01', 'dylan.bonin@free.fr', 'password', '4 rue pasteur', 91260, 'juvisy-sur-orge', 1, NULL);
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `rate`
+--
+
+CREATE TABLE `rate` (
+  `id` int(11) NOT NULL,
+  `label` text,
+  `id_activity` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 --
 -- Index pour les tables exportées
 --
@@ -265,6 +277,13 @@ ALTER TABLE `user`
   ADD KEY `FK_user_id_role` (`id_role`);
 
 --
+-- Index pour la table `rate`
+--
+ALTER TABLE `rate`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FK_activity_id` (`id_activity`);
+
+--
 -- AUTO_INCREMENT pour les tables exportées
 --
 
@@ -308,6 +327,13 @@ ALTER TABLE `tag`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT pour la table `rate`
+--
+ALTER TABLE `rate`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Contraintes pour les tables exportées
 --
@@ -344,6 +370,12 @@ ALTER TABLE `post`
 --
 ALTER TABLE `user`
   ADD CONSTRAINT `FK_user_id_role` FOREIGN KEY (`id_role`) REFERENCES `role` (`id`);
+
+--
+-- Contraintes pour la table `rate`
+--
+ALTER TABLE `rate`
+  ADD CONSTRAINT `FK_rate_activity_id` FOREIGN KEY (`id_activity`) REFERENCES `hobbyactivity` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

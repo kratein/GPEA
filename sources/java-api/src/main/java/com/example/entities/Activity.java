@@ -14,15 +14,24 @@ public class Activity extends Entities implements Serializable {
     private String cover;
     private String slogan;
     private Double price;
+    private int max_n_people;
 
     @Override
     public String toString() {
         return "{" + " label='" + getLabel() + "'" + ", description='" + getDescription() + "'" + ", web_site='"
                 + getWeb_site() + "'" + ", min_older='" + getMin_older() + "'" + ", street='" + getStreet() + "'"
                 + ", zip_code='" + getZip_code() + "'" + ", city='" + getCity() + "'" + ", cover='" + getCover() + "'"
-                + ", slogan='" + getSlogan() + "'" + ", price='" + getPrice() + "'" + "}";
+                + ", slogan='" + getSlogan() + "'" + ", price='" + getPrice() + "'" + ", max_n_people='" + getMax_n_people() + "' }";
     }
 
+    public int getMax_n_people() {
+        return this.max_n_people;
+    }
+
+    public void setMax_n_people(int max_n_people) {
+        this.max_n_people = max_n_people;
+    }
+    
     public String getCity() {
         return this.city;
     }
@@ -104,7 +113,7 @@ public class Activity extends Entities implements Serializable {
     }
 
     public Activity(int id, String label, String description, String web_site, int min_older, String street,
-            String zip_code, String city, String cover, String slogan, Double price) {
+            String zip_code, String city, String cover, String slogan, Double price, int max_n_people) {
         this.id = id;
         this.label = label;
         this.description = description;
@@ -116,6 +125,7 @@ public class Activity extends Entities implements Serializable {
         this.cover = cover;
         this.slogan = slogan;
         this.price = price;
+        this.max_n_people = max_n_people;
     }
 
     public Activity() {
