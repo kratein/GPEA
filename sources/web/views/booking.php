@@ -6,9 +6,18 @@
         {
             $id = $_GET['id'];
             $hobby = GetHobbyObject($id);
-            $photos = GetPhotosActivityObject($hobby->getId());
-  		}
-  ?>
+			$photos = GetPhotosActivityObject($hobby->getId());
+			$user = GetUserObject($_SESSION['userId']);
+		  }
+		  if (isset($_POST['submitform']))
+		  {   
+		  ?>
+	  <script type="text/javascript">
+	  window.location = "./activity/$id";
+	  </script>      
+		  <?php
+		  } 
+		  ?>
   <body>
   	<div class="container-fluid bookingForm mx-auto">
 		<div class="row align-items-center">
@@ -35,29 +44,29 @@
 			    <div class="card-body">
 
 			        <!-- Form -->
-			        <form class="" style="color: #757575;">
-
+			        <form class="" action="<?php echo $domain;?>controller/controller_booking.php" name="submitform" method="POST" style="color: #757575;">
+		  				<input value="<?php echo $id?>" name="activity_id" hidden/>
 			            <div class="form-row">
 			                <div class="col">
 			                    <!-- First name -->
 			                    <div class="md-form">
-			                        <input type="text" class="form-control" placeholder="Prénom">
+			                        <input type="text" name="firstName" class="form-control" value="<?php echo $user->getFirstName(); ?>" disabled>
 			                    </div>
 			                </div>
 			                <div class="col">
 			                    <!-- Last name -->
 			                    <div class="md-form">
-			                        <input type="text" class="form-control" placeholder="Nom">
+			                        <input type="text" name="lastName" class="form-control"  value="<?php echo $user->getLastName(); ?>" disabled>
 			                    </div>
 			                </div>
 			            </div><br>
 
 			            <!-- E-mail -->
 			            <div class="md-form mt-0">
-			                <input type="email" class="form-control" placeholder="E-mail">
+			                <input type="email" class="form-control" name="email" value="<?php echo $user->getEmail(); ?>" disabled>
 			            </div><br>
 						<div class="form-group"> 
-	<input type="range" id="nbPeopleRange" class="form-control-range slider"  min="0" max="<?php echo $hobby->getOlder(); ?>" value="<?php echo $hobby->getOlder()/2; ?>" id="formControlRange">
+	<input type="range" name="nbPeopleRange" id="nbPeopleRange" class="form-control-range slider"  min="1" max="<?php echo $hobby->getOlder(); ?>" value="<?php echo $hobby->getOlder()/2; ?>" id="formControlRange">
 	<label for="formControlRange">Nombre de participants: <span id="nbPeople"></span></label>
 </div>
 				<script>
@@ -79,11 +88,11 @@
 
 						</div>					
 						<div class="col">
-						<input type="date" class="form-control datepicker" placeholder="Date"/>
+						<input type="date" name="date" class="form-control datepicker" placeholder="Date"/>
 							
 						</div>
 						<div class="col">
-						<select class="form-control" id="hours">
+						<select class="form-control" id="hours" name="hours">
 								<?php foreach(range(8,17) as $i){
 									echo "<option value=$i>$i h</option>";
 								}
@@ -91,7 +100,7 @@
 								</select>
 							</div>
 							<div class="col">
-							<select class="form-control" id="hours">
+							<select class="form-control" id="minutes" name="minutes">
 								<option value="0">00</option>
 								<option value="30">30</option>
 								</select>
@@ -100,7 +109,6 @@
 									<div>
 			            <!-- Sign up button -->
 			            <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Reserver</button>
-
 	       
 			        </form>
 			        <!-- Form -->

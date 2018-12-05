@@ -26,7 +26,6 @@ class Booking extends Entities implements JsonSerializable
             return null;
         }
         $booking = new Booking();
-        $booking->setId($stdClass->id);
         $booking->setUser_Id($stdClass->user_id);
         $booking->setN_People($stdClass->n_people);  
         $booking->setDate($stdClass->date);
@@ -51,6 +50,10 @@ class Booking extends Entities implements JsonSerializable
         return $this->_activity_id;
     }
 
+    public function getDate(){
+        return $this->_date;
+    }
+
     public function setN_People($n_people)
     {
         $this->_n_people = $n_people;
@@ -59,6 +62,10 @@ class Booking extends Entities implements JsonSerializable
     public function setUser_Id($id_user)
     {
         $this->_user_id = $id_user;
+    }
+
+    public function setDate($date){
+        $this->_date = $date;
     }
 
     public function setActivity_Id($id_hobbyactivity)
@@ -89,10 +96,6 @@ class Booking extends Entities implements JsonSerializable
     {
         return $this->toArray();
     }
-
-
-
-
 
     /**
      * Get the value of _hour

@@ -5,6 +5,8 @@ require_once ('entities/Photo.php');
 require_once ('entities/User.php');
 require_once ('entities/Booking.php');
 
+
+
 function GetTagsObject() {
     $json = file_get_contents("http://localhost:8080/api/tag/all");
     $json = json_decode($json); 
@@ -43,11 +45,80 @@ function Connect($email, $password) {
     return $api_response;
 }
 
+function AddUserObject($user){
+    $api_request_url = "http://localhost:8080/api/user";
+    $data = array (
+        'firstName' => $user->getFirstName(),
+        'lastName' => $user->getLastName(),
+        'email' => $user->getEmail(),
+        'password' => $user->getPassword(),
+        'dob' => $user->getBirthday()
+    );
+    $ch = curl_init();
+    $options = array(
+        CURLOPT_URL            => $api_request_url,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_HEADER         => false,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_ENCODING       => "",
+        CURLOPT_AUTOREFERER    => true,
+        CURLOPT_CONNECTTIMEOUT => 12000,
+        CURLOPT_TIMEOUT        => 12000,
+        CURLOPT_MAXREDIRS      => 10,
+        CURLOPT_POSTFIELDS     => json_encode($data),
+        CURLOPT_POST           => true,
+        CURLOPT_HTTPHEADER     => array('Content-Type: application/json')
+    );
+    curl_setopt_array( $ch, $options );
+    $api_response = curl_exec($ch);
+    $api_response_info = curl_getinfo($ch);
+    curl_close($ch);
+    return $api_response;
+}
+
+function AddBookingObject($booking){
+    $api_request_url = "http://localhost:8080/api/booking";
+    $data = array (
+        'user_id' => $booking->getUser_id(),
+        'activity_id' => $booking->getActivity_id(),       
+        'n_people' => $booking->getN_people(),
+        'minute' => $booking->getMinute(),
+        'date' => $booking->getDate(),
+        'hour' => $booking->getHour()
+    );
+    $ch = curl_init();
+    $options = array(
+        CURLOPT_URL            => $api_request_url,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_HEADER         => false,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_ENCODING       => "",
+        CURLOPT_AUTOREFERER    => true,
+        CURLOPT_CONNECTTIMEOUT => 12000,
+        CURLOPT_TIMEOUT        => 12000,
+        CURLOPT_MAXREDIRS      => 10,
+        CURLOPT_POSTFIELDS     => json_encode($data),
+        CURLOPT_POST           => true,
+        CURLOPT_HTTPHEADER     => array('Content-Type: application/json')
+    );
+    curl_setopt_array( $ch, $options );
+    $api_response = curl_exec($ch);
+    $api_response_info = curl_getinfo($ch);
+    curl_close($ch);
+    return $api_response;
+}
+
 function GetTagObject($id) {
     $json = file_get_contents("http://localhost:8080/api/tag/$id");
     $json = json_decode($json);
     $tag = Tag::create($json);
     return $tag;
+}
+function GetUserObject($id){
+    $json = file_get_contents("http://localhost:8080/api/user/$id");
+    $json = json_decode($json);
+    $user = User::create($json);
+    return $user;
 }
 
 function GetBookingObjectByUser($user_id) {

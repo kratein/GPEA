@@ -2,7 +2,7 @@
 require_once '../modele/api.php';
 
 session_start();
-var_dump($_SESSION);
+if (!isset($Stdclass)) $Stdclass = new stdClass();
 if (isset($_SESSION)){
     $Stdclass->user_id = $_SESSION['userId'];
 }
@@ -10,10 +10,11 @@ if (isset($_SESSION)){
 $Stdclass->n_people = $_POST['nbPeopleRange'];
 $Stdclass->date = $_POST['date'];
 $Stdclass->minute = $_POST['minutes'];
-$Stdclass->hour = $_POST['hour'];
-$Stdclass->activity_id = $_POST['activityId'];
+$Stdclass->hour = $_POST['hours'];
+$Stdclass->activity_id = $_POST['activity_id'];
 
 $booking = Booking::create($Stdclass);
-var_dump(get_class($booking));
+
+var_dump($booking);
 $response = AddBookingObject($booking);
-header ("Location: ../" );
+header("Location:../activite/" . $booking->getActivity_Id());
